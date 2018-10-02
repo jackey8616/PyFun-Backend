@@ -1,9 +1,16 @@
 
 import os, time
 from os import listdir
-from os.path import isfile, join
+from os.path import isfile, isdir, join
 from subprocess import Popen, PIPE
 from hashlib import md5
+
+def get_import_dirs(path):
+    path = join(os.getcwd(), path)
+    ls_files = listdir(path)
+    ls_files.sort()
+    pys = [ f for f in ls_files if isdir(join(path, f)) and f != '__pycache__' ]
+    return pys
 
 def get_import_files(path):
     path = join(os.getcwd(), path)
@@ -11,6 +18,12 @@ def get_import_files(path):
     ls_files.sort()
     pys = [ (f[f.index('_') + 1:-3], f) for f in ls_files if isfile(join(path, f)) and f != '__init__.py']
     return pys
+
+def import_dirs(pys, _globals, _locals, path):
+    imports = {}
+    for each in pys:
+        imports[each] = __import__(path + '.' + each, _globals, _locals, [ each ], 0)
+    return imports
 
 def import_files(pys, _globals, _locals, path):
     imports = {}
