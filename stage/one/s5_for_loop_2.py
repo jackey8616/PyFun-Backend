@@ -4,23 +4,33 @@ from sanic.response import json
 
 from utils import file_generate, file_execute
 
+route = {
+    'function': 'for_loop_2',
+    'url': '/stage/one/for_loop_2',
+    'methods': [ 'GET', 'POST' ]
+}
+data = {
+    'title': 'For Loop (2)',
+    'description': [
+        'This time I want some stars in triangle.',
+        'Please give me a UP-SIDE-DOWN triangle stars with both width and height in 5.'
+    ],
+    'code': [
+        'for each in range(0, _____):',
+        '    for every in range(_____, 50):',
+        '        print(\'*\', end=\'\'',
+        '    print(\'\')'
+    ],
+    'fields': [
+        'field_1',
+        'field_2'
+    ]
+}
+
 async def for_loop_2(request):
     try:
         if request.method == 'GET':
-            data = {
-                'title': 'For Loop (2)',
-                'description': [
-                    'This time I want some stars in triangle.',
-                    'Please give me a UP-SIDE-DOWN triangle stars with both width and height in 5.'
-                ],
-                'code': [
-                    'for each in range(0, _____):',
-                    '    for every in range(_____, 50):',
-                    '        print(\'*\', end=\'\'',
-                    '    print(\'\')'
-                ],
-                'fields': [ 'field_1', 'field_2' ]
-            }
+            global data
             return json({ 'success': True, 'data': data })
         else:
             code_data = concat_code(request.json)

@@ -4,27 +4,34 @@ from sanic.response import json
 
 from utils import file_generate, file_execute
 
+route = {
+    'function': 'if_elif_else',
+    'url': '/stage/one/if_elif_else',
+    'methods': [ 'GET', 'POST' ]
+}
+data = {
+    'title': 'If ElseIf and Else',
+    'image': 'https://myanimelist.cdn-dena.com/images/characters/6/276027.jpg',
+    'description': [
+        'Do you know Haruna?',
+        'If you know her, then you are my friend.'
+    ],
+    'code': [      
+        'answer = _____',
+        'if answer == \'I know her\':',
+        '    print(\'We are best friend.\')',
+        'elif answer == \'Who is she?\':',
+        '    print(\'You are not my friend! go away!\')',
+        'else:',
+        '    print(\'May be you can understand who she is right now.\')'
+        ],
+    'fields': [ 'filed_1' ]
+}
+
 async def if_elif_else(request):
     try:
         if request.method == 'GET':
-            data = {
-                'title': 'If ElseIf and Else',
-                'image': 'https://myanimelist.cdn-dena.com/images/characters/6/276027.jpg',
-                'description': [
-                    'Do you know Haruna?',
-                    'If you know her, then you are my friend.'
-                ],
-                'code': [               
-                    'answer = _____',
-                    'if answer == \'I know her\':',
-                    '    print(\'We are best friend.\')',
-                    'elif answer == \'Who is she?\':',
-                    '    print(\'You are not my friend! go away!\')',
-                    'else:',
-                    '    print(\'May be you can understand who she is right now.\')'
-                ],
-                'fields': [ 'filed_1' ]
-            }
+            global data
             return json({ 'success': True, 'data': data })
         else:
             code_data = concat_code(request.json)

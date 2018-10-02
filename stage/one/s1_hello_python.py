@@ -4,20 +4,32 @@ from sanic.response import json
 
 from utils import file_generate, file_execute
 
+route = {
+    'function': 'hello_python',
+    'url': '/stage/one/hello_python',
+    'methods': [ 'GET', 'POST' ]
+}
+data = {
+    'title': 'Hello Python',
+    'image': 'https://community-cdn-digitalocean-com.global.ssl.fastly.net/assets/tutorials/images/large/EBOOK_PYTHON_no-name.png?1516826609',
+    'description': [
+        'Hello there!',
+        'I see that you are a new face!',
+        'Try to say Hello to me!'
+    ],
+    'code': [
+        '_____(\'_____\')'
+    ],
+    'fields': [
+        'field_1',
+        'field_2'
+    ]
+}
+
 async def hello_python(request):
     try:
         if request.method == 'GET':
-            data = {
-                'title': 'Hello Python',
-                'image': 'https://community-cdn-digitalocean-com.global.ssl.fastly.net/assets/tutorials/images/large/EBOOK_PYTHON_no-name.png?1516826609',
-                'description': [
-                    'Hello there!',
-                    'I see that you are a new face!',
-                    'Try to say Hello to me!'
-                ],
-                'code': ['_____(\'_____\')'],
-                'fields': [ 'field_1', 'field_2' ]
-            }
+            global data
             return json({ 'success': True, 'data': data })
         else:
             code_data = concat_code(request.json)
