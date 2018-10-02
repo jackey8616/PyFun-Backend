@@ -10,7 +10,7 @@ def md5_content(data):
     return hasher.hexdigest()
 
 def file_generate(data):
-    file_name = os.path.join(os.getcwd(), './tmp/{0}.py'.format(md5_content(data)))
+    file_name = os.path.join(os.getcwd(), 'tmp/{0}.py'.format(md5_content(data)))
     with open(file_name, 'w') as py_file:
         py_file.write(data)
     return file_name
