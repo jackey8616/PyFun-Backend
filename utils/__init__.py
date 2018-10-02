@@ -7,7 +7,9 @@ from hashlib import md5
 
 def get_import_files(path):
     path = join(os.getcwd(), path)
-    pys = [ (f[f.index('_') + 1:-3], f) for f in listdir(path) if isfile(join(path, f)) and f != '__init__.py']
+    ls_files = listdir(path)
+    ls_files.sort()
+    pys = [ (f[f.index('_') + 1:-3], f) for f in ls_files if isfile(join(path, f)) and f != '__init__.py']
     return pys
 
 def import_files(pys, _globals, _locals, path):
@@ -17,6 +19,12 @@ def import_files(pys, _globals, _locals, path):
         sub = getattr(imports[module], module)
         _locals[module] = sub
     return imports
+
+def list_paths(pys):
+    ls = []
+    for (module, file_name) in pys:
+        ls.append(module.replace('_', ' '))
+    return ls
 
 def md5_content(data):
     data = str(time.time()) + data

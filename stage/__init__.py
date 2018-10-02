@@ -2,17 +2,13 @@
 import traceback
 from sanic.response import json
 
-from stage.one import add_route as one_add_route
+from utils import list_paths
+from stage.one import pys as one_pys, add_route as one_add_route
+
 
 async def index(request):
     stages = {
-        'one': [
-            'hello python',
-            'basic type',
-            'if elif else',
-            'for loop',
-            'for loop 2'
-        ]
+        'one': list_paths(one_pys)
     }
     return json({ 'success': True, 'data': stages })
 
