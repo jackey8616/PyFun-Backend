@@ -8,16 +8,19 @@ async def hello_python(request):
     try:
         if request.method == 'GET':
             data = {
+                'title': 'Hello Python',
+                'image': 'https://community-cdn-digitalocean-com.global.ssl.fastly.net/assets/tutorials/images/large/EBOOK_PYTHON_no-name.png?1516826609',
                 'description': [
                     'Hello there!',
                     'I see that you are a new face!',
                     'Try to say Hello to me!'
                 ],
-                'fields': [ 'filed_1', 'filed_2' ]
+                'code': ['_____(\'_____\')'],
+                'fields': [ 'field_1', 'field_2' ]
             }
             return json({ 'success': True, 'data': data })
         else:
-            code_data = concat_code(request.form)
+            code_data = concat_code(request.json)
             file_name = file_generate(code_data)
             stdout, stderr = file_execute(file_name)
             result = answer(stdout, stderr)
@@ -30,11 +33,16 @@ async def hello_python(request):
 # Under python3, please print Hello Python.
 # A1: print('Hello World')
 def concat_code(form):
-    return "{0}('{1}')".format(form['filed_1'][0], form['filed_2'][0])
+    return "{0}('{1}')".format(
+        form['field_1'] if 'field_1' in form else '', 
+        form['field_2'] if 'field_2' in form else '')
 
 def answer(stdout, stderr):
-    if stderr != []:
+    try:
+        if stderr != []:
+            return False
+        else:
+            return stdout[0].decode() == 'Hello Python\n'
+    except:
         return False
-    else:
-        return stdout[0].decode() == 'Hello Python\n'
 

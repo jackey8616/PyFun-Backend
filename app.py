@@ -1,10 +1,12 @@
 
 from sanic import Sanic
 from sanic.response import json
+from sanic_cors import CORS, cross_origin
 
 from stage import add_route as stage_add_route
 
 app = Sanic()
+CORS(app)
 stage_add_route(app)
 
 @app.route('/', methods=['GET'])

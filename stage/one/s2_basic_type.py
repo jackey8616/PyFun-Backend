@@ -8,15 +8,22 @@ async def basic_type(request):
     try:
         if request.method == 'GET':
             data = {
+                'title': 'Basic Type',
                 'description': [
                     'Here is some simple math,',
                     'Can you help me to solve it?'
                 ],
-                'fields': [ 'filed_1', 'filed_2' ]
+                'code': [
+                    'a = 10',
+                    'print(a == 10)',
+                    'b = _____',
+                    'print(a + b == 100)'
+                ],
+                'fields': [ 'filed_1' ]
             }
             return json({ 'success': True, 'data': data })
-        elif request.method == 'POST':
-            code_data = concat_code(request.form)
+        else:
+            code_data = concat_code(request.json)
             file_name = file_generate(code_data)
             stdout, stderr = file_execute(file_name)
             result = answer(stdout, stderr)
@@ -36,14 +43,17 @@ a = 10
 print(a == 10)
 b = {0}
 print(a + b == 100)
-""".format(form['filed_1'][0])
+""".format(form['filed_1'] if 'filed_1' in form else '')
 
 def answer(stdout, stderr):
-    if stderr != []:
+    try:
+        if stderr != []:
+            return False
+        else:
+            for each in stdout:
+                if each.decode() != 'True\n':
+                    return False
+            return True
+    except:
         return False
-    else:
-        for each in stdout:
-            if each.decode() != 'True\n':
-                return False
-        return True
 
