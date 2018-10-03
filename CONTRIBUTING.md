@@ -1,5 +1,5 @@
 
-# Contributing new stage or lession
+# Contributing new stage or lesson
 
 Inside `stage` module.  
 There is two sub-module named `one` and `two`.  
@@ -16,7 +16,7 @@ setup = {
 }
 ```
 
-## Creating a new lession
+## Creating a new lesson
 Inside the `stage/[stage_name]` folder (such as `stage/one`).  
 Make sure there is a mininum `__init__.py`.  
 
@@ -25,10 +25,10 @@ And create new file with any name you like ,
 But file name show same as function name.  
 **IMPORTANT**
 ```
-If you wish your lessions can be sort.
-Naming these lession file can use some count such as:
+If you wish your lessons can be sort.
+Naming these lesson file can use some count such as:
 Example:
-  You have a lession want to called i_love_haruna, and you wish it in place 35
+  You have a lesson want to called i_love_haruna, and you wish it in place 35
   Then you shoud create a file called s35_i_love_haruna.py with a async function like:
   async def i_love_haruna(request):
 ```
