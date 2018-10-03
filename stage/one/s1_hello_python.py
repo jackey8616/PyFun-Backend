@@ -2,6 +2,7 @@
 import traceback
 from sanic.response import json
 
+from utils import fields_generate, concat_code
 from utils import file_generate, file_execute
 
 route = {
@@ -20,11 +21,9 @@ data = {
     'code': [
         '_____(\'_____\')'
     ],
-    'fields': [
-        'field_1',
-        'field_2'
-    ]
+    'fields': []
 }
+data['fields'] = fields_generate(data)
 
 async def hello_python(request):
     try:
@@ -32,22 +31,13 @@ async def hello_python(request):
             global data
             return json({ 'success': True, 'data': data })
         else:
-            code_data = concat_code(request.json)
+            code_data = concat_code(data, request.json)
             file_name = file_generate(code_data)
             stdout, stderr = file_execute(file_name)
             result = answer(stdout, stderr)
             return json({ 'success': True, 'data': { 'result': result, 'stdout': stdout, 'stderr': stderr} })
     except:
         return json({ 'fail': True, 'error': traceback.format_exc() })
-
-# Q1: Hello Python
-# _____('_______')
-# Under python3, please print Hello Python.
-# A1: print('Hello World')
-def concat_code(form):
-    return "{0}('{1}')".format(
-        form['field_1'] if 'field_1' in form else '', 
-        form['field_2'] if 'field_2' in form else '')
 
 def answer(stdout, stderr):
     try:

@@ -5,6 +5,27 @@ from os.path import isfile, isdir, join
 from subprocess import Popen, PIPE
 from hashlib import md5
 
+def fields_generate(data):
+    fields = []
+    count = 0
+    for each in data['code']:
+        count += each.count('_____')
+    for each in range(1, count + 1):
+        fields.append('field_{0}'.format(each))
+    return fields
+
+def concat_code(data, form):
+    fields = data['fields']
+    count = 0
+    code = ''
+    for each in data['code']:
+        while each.count('_____') != 0:
+            each = each.replace('_____', '{}', 1)
+            each = each.format(form[fields[count]])
+            count += 1
+        code += each + '\n'
+    return code
+
 def get_import_dirs(path):
     path = join(os.getcwd(), path)
     ls_files = listdir(path)
