@@ -26,5 +26,5 @@ def add_route(app):
         module_imports = import_files(module_pys, globals(), locals(), setup['package'])
         for (key, value) in module_imports.items():
             route = value.route
-            app.add_route(getattr(value, route['function']), route['url'], route['methods'])
+            app.add_route(getattr(value, 'sanic_request'), route['url'], route['methods'])
 

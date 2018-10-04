@@ -1,12 +1,9 @@
 
-import traceback
-from sanic.response import json
-
-from utils import fields_generate, concat_code
-from utils import file_generate, file_execute
+from utils.form import blank_form
+from utils import fields_generate
 
 route = {
-    'function': 'hello_python',
+    'type': blank_form,
     'url': '/stage/one/hello_python',
     'methods': [ 'GET', 'POST' ]
 }
@@ -25,19 +22,12 @@ data = {
 }
 data['fields'] = fields_generate(data)
 
-async def hello_python(request):
+async def sanic_request(request):
     try:
-        if request.method == 'GET':
-            global data
-            return json({ 'success': True, 'data': data })
-        else:
-            code_data = concat_code(data, request.json)
-            file_name = file_generate(code_data)
-            stdout, stderr = file_execute(file_name)
-            result = answer(stdout, stderr)
-            return json({ 'success': True, 'data': { 'result': result, 'stdout': stdout, 'stderr': stderr} })
-    except:
-        return json({ 'fail': True, 'error': traceback.format_exc() })
+        return override(request)
+    except NameError:
+        global data, route
+        return route['type'](data, request, answer)
 
 def answer(stdout, stderr):
     try:
