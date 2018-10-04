@@ -1,12 +1,13 @@
-
 from utils.form import blank_form
 from utils import fields_generate
+
 
 route = {
     'type': blank_form,
     'url': '/stage/one/basic_type',
-    'methods': [ 'GET', 'POST' ]
+    'methods': ['GET', 'POST']
 }
+
 data = {
     'title': 'Basic Type',
     'description': [
@@ -21,7 +22,9 @@ data = {
     ],
     'fields': []
 }
+
 data['fields'] = fields_generate(data)
+
 
 async def sanic_request(request):
     try:
@@ -29,6 +32,7 @@ async def sanic_request(request):
     except NameError:
         global data, route
         return route['type'](data, request, answer)
+
 
 def answer(stdout, stderr):
     try:
@@ -39,6 +43,5 @@ def answer(stdout, stderr):
                 if each.decode() != 'True\n':
                     return False
             return True
-    except:
+    except Exception:
         return False
-

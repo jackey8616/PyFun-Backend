@@ -1,6 +1,7 @@
 from utils.form import blank_form
 from utils import fields_generate
 
+
 route = {
     'type': blank_form,
     'url': '/stage/one/while_loop',
@@ -21,6 +22,7 @@ data = {
     ],
     'fields': []
 }
+
 data['fields'] = fields_generate(data)
 
 
@@ -37,7 +39,8 @@ def answer(stdout, stderr):
         if stderr != []:
             return False
         else:
-            ans = ['10\n', '9\n', '8\n', '7\n', '6\n', '5\n', '4\n', '3\n', '2\n', '1\n']
+            ans = ['10\n', '9\n', '8\n', '7\n', '6\n', '5\n',
+                   '4\n', '3\n', '2\n', '1\n']
             for each in range(0, 10):
                 if stdout[each].decode() != ans[each]:
                     return False
