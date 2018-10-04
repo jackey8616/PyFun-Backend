@@ -1,12 +1,13 @@
-
 from utils.form import blank_form
 from utils import fields_generate
+
 
 route = {
     'type': blank_form,
     'url': '/stage/one/for_loop_2',
-    'methods': [ 'GET', 'POST' ]
+    'methods': ['GET', 'POST']
 }
+
 data = {
     'title': 'For Loop (2)',
     'description': [
@@ -21,7 +22,9 @@ data = {
     ],
     'fields': []
 }
+
 data['fields'] = fields_generate(data)
+
 
 async def sanic_request(request):
     try:
@@ -29,6 +32,7 @@ async def sanic_request(request):
     except NameError:
         global data, route
         return route['type'](data, request, answer)
+
 
 def answer(stdout, stderr):
     try:
@@ -42,6 +46,5 @@ def answer(stdout, stderr):
                 if stdout[each].decode() != ans[each]:
                     return False
             return True
-    except:
+    except Exception:
         return False
-            

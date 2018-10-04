@@ -1,6 +1,7 @@
 from utils.form import blank_form
 from utils import fields_generate
 
+
 route = {
     'type': blank_form,
     'url': '/stage/one/list',
@@ -25,6 +26,7 @@ data = {
     ],
     'fields': []
 }
+
 data['fields'] = fields_generate(data)
 
 
