@@ -40,21 +40,26 @@ def get_import_files(path):
     path = join(os.getcwd(), path)
     ls_files = listdir(path)
     ls_files.sort()
-    pys = [(f[f.index('_') + 1:-3], f) for f in ls_files if isfile(join(path, f)) and f != '__init__.py']
+    pys = []
+    for f in ls_files:
+        if isfile(join(path, f)) and f != '__init__.py':
+            pys.append((f[f.index('_') + 1:-3], f))
     return pys
 
 
 def import_dirs(pys, _globals, _locals, path):
     imports = {}
     for each in pys:
-        imports[each] = __import__(path + '.' + each, _globals, _locals, [each], 0)
+        imports[each] = __import__(path + '.' + each,
+                                   _globals, _locals, [each], 0)
     return imports
 
 
 def import_files(pys, _globals, _locals, path):
     imports = {}
     for (module, file_name) in pys:
-        imports[module] = __import__(path + '.' + file_name[:-3], _globals, _locals, [module], 0)
+        imports[module] = __import__(path + '.' + file_name[:-3],
+                                     _globals, _locals, [module], 0)
     return imports
 
 
@@ -73,7 +78,8 @@ def md5_content(data):
 
 
 def file_generate(data):
-    file_name = os.path.join(os.getcwd(), 'tmp/{0}.py'.format(md5_content(data)))
+    file_name = os.path.join(os.getcwd(),
+                             'tmp/{0}.py'.format(md5_content(data)))
     with open(file_name, 'w') as py_file:
         py_file.write(data)
     return file_name

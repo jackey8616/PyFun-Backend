@@ -12,7 +12,8 @@ data = {
     'title': 'For Loop (2)',
     'description': [
         'This time I want some stars in triangle.',
-        'Please give me a UP-SIDE-DOWN triangle stars with both width and height in 5.'
+        'Please give me a UP-SIDE-DOWN triangle stars with both width' +
+        'and height in 5.'
     ],
     'code': [
         'for each in range(0, _____):',

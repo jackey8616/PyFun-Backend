@@ -10,7 +10,9 @@ route = {
 
 data = {
     'title': 'Hello Python',
-    'image': 'https://community-cdn-digitalocean-com.global.ssl.fastly.net/assets/tutorials/images/large/EBOOK_PYTHON_no-name.png?1516826609',
+    'image': 'https://community-cdn-digitalocean-com.global.ssl.fastly.net/' +
+             'assets/tutorials/images/large/' +
+             'EBOOK_PYTHON_no-name.png?1516826609',
     'description': [
         'Hello there!',
         'I see that you are a new face!',
