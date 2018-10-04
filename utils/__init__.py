@@ -50,8 +50,6 @@ def import_files(pys, _globals, _locals, path):
     imports = {}
     for (module, file_name) in pys:
         imports[module] = __import__(path + '.' + file_name[:-3], _globals, _locals, [ module ], 0)
-        sub = getattr(imports[module], module)
-        _locals[module] = sub
     return imports
 
 def list_paths(pys):
