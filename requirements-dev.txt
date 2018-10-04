@@ -4,8 +4,11 @@ async-generator==1.10
 async-timeout==3.0.0
 atomicwrites==1.2.1
 attrs==18.2.0
+certifi==2018.8.24
 chardet==3.0.4
 Click==7.0
+codecov==2.0.15
+coverage==4.5.1
 httptools==0.0.11
 idna==2.7
 more-itertools==4.3.0
@@ -13,12 +16,15 @@ multidict==4.4.2
 pluggy==0.7.1
 py==1.6.0
 pytest==3.8.2
+pytest-cov==2.6.0
 pytest-sanic==0.1.13
+requests==2.19.1
 sanic==0.8.3
 Sanic-Cors==0.9.6
 Sanic-Plugins-Framework==0.6.3.dev20180717
 six==1.11.0
 ujson==1.35
+urllib3==1.23
 uvloop==0.11.2
 websockets==5.0.1
 yarl==1.2.6

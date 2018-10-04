@@ -3,7 +3,7 @@ import asyncio
 from pytest_sanic.utils import TestClient
 
 from sanic import Sanic
-from app import path_check as pc
+from app import index, path_check as pc
 from stage import add_route as stage_add_route
 
 
@@ -15,6 +15,7 @@ def path_check():
 @pytest.yield_fixture(scope='module')
 def app(path_check):
     app = Sanic()
+    app.add_route(index, '/', methods=['GET'])
     stage_add_route(app)
     yield app
 
