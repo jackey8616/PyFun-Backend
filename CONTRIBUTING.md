@@ -18,11 +18,11 @@ setup = {
 ## Creating a new lesson
 Make sure there is a `__init__.py` inside the `stage/[stage_name]` folder (such as `stage/one`).
 
-Create a new file with any name you like (it should however follow the same conventions as a function name). 
+Create a new file with any name you like (although snake_case is preferred). 
 **IMPORTANT**
 ```
 If you wish your lessons to be sorted then they should be named with an index. For example:
-  If you have a lesson you want to be called i_love_haruna, and you want it to be the 35th lesson.
+  Say you have a lesson you want to be called i_love_haruna, and you want it to be the 35th lesson.
   You shoud create a file called s35_i_love_haruna.py with a async function like:
   async def i_love_haruna(request):
 ```
