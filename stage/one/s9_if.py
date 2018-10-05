@@ -24,10 +24,10 @@ data = {
     ],
     'code': [
         'age=20',
-        'if(____):',
-            'print(\'You are old\')',
+        'if(_____):',
+        '   print(\'You are old\')',
         'else:'
-            'print(\'You are young\')',
+        '   print(\'You are young\')',
     ],
     'fields': []
 }
