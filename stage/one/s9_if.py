@@ -25,9 +25,9 @@ data = {
     'code': [
         'age=20',
         'if(_____):',
-            'print('________')',
+            'print(\'You are old\')',
         'else:'
-            'print('________')',
+            'print(\'You are young\')',
     ],
     'fields': []
 }
@@ -49,7 +49,7 @@ def answer(stdout, stderr):
             return False
         else:
             ans = "age>18"
-            if stdout[0].decode() != ans & :
+            if stdout[0].decode() != ans:
                 return False
             return True
     except Exception:
