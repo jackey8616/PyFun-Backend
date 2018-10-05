@@ -152,6 +152,8 @@ async def test_haruna_cute(test_cli):
 
 ## Testing Your Lessons
 Once you made tests for your lesson, be sure to test it locally before making a pull request!
-You can easily do this by running `python -m pytest`. Pytest will alert you which of your tests fail so you can easily fix them! If you do not catch these locally, the repository has Travis integration to make sure your builds pass or fail, so be sure to check your pull request after you make it to see if you succeed!
+You can easily run all tests by executing `python -m pytest` on the command line. Or, if you only want to test your new functionality, run `python -m pytest tests/stage/[stage number]/[your_test_file_name.py]`
+
+Pytest will alert you which of your tests fail so you can easily fix them! If you do not catch these locally, the repository has Travis integration to make sure your builds pass or fail, so be sure to check your pull request after you make it to see if you succeed!
 
 Good luck!
