@@ -24,7 +24,7 @@ data = {
     ],
     'code': [
         'age=20',
-        'if(______):',
+        'if(_____):',
         '   print(\'You are old\')',
         'else:'
         '   print(\'You are young\')',
