@@ -32,7 +32,7 @@ data = {
     ],
     'code': [
         'def add(_____, _____):',
-        '     ______ num1 + num2',
+        '     _____ num1 + num2',
         '',
         'if add(1, 2) == 3:',
         '    print("Well done!")',
