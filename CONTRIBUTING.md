@@ -1,13 +1,12 @@
 
 # Contributing new stage or lesson
 
-Inside `stage` module.  
-There is two sub-module named `one` and `two`.  
-Each sub-module folder should contains `__init__.py` for auto import.  
+Inside `stage` module there are two sub-modules named `one` and `two`.  
+Each sub-module folder should contain `__init__.py`.  
 
 ## Creating a new stage
 Inside `stage` folder, `mkdir` a new stage with name you want.  
-And create a mininum `__init__.py` with following `dict`:  
+Create a minimal `__init__.py` with following `dict`:  
 ```python
 setup = {
   'path': 'backend/file/path/to/sub-module',   # This str will be use in os.path.join(), Do NOT starts with /
@@ -17,19 +16,14 @@ setup = {
 ```
 
 ## Creating a new lesson
-Inside the `stage/[stage_name]` folder (such as `stage/one`).  
-Make sure there is a mininum `__init__.py`.  
+Make sure there is a `__init__.py` inside the `stage/[stage_name]` folder (such as `stage/one`).
 
-
-And create new file with any name you like ,
-But file name show same as function name.  
+Create a new file with any name you like (it should however follow the same conventions as a function name). 
 **IMPORTANT**
 ```
-If you wish your lessons can be sort.
-Naming these lesson file can use some count such as:
-Example:
-  You have a lesson want to called i_love_haruna, and you wish it in place 35
-  Then you shoud create a file called s35_i_love_haruna.py with a async function like:
+If you wish your lessons to be sorted then they should be named with an index. For example:
+  If you have a lesson you want to be called i_love_haruna, and you want it to be the 35th lesson.
+  You shoud create a file called s35_i_love_haruna.py with a async function like:
   async def i_love_haruna(request):
 ```
 With following code:  
@@ -92,9 +86,9 @@ def answer(stdout, stderr):
 ```
 
 ## Provide a test
-After you create a new lesson, you may wonder the code is function normal or not.  
-Inside `tests/stage/[stage name]/` folder, create a new test py file starts with `test_`.
-For example, `s1_hello_python.py` it's test file is `test_s1_hello_python.py`
+After you create a new lesson it is important to make sure the code functions as intended.  
+Inside the `tests/stage/[stage name]/` folder, create a new test.py file that starts with `test_`.
+For example, `s1_hello_python.py` would have a test file called `test_s1_hello_python.py`
 
 Add following code:
 ```python
@@ -110,9 +104,9 @@ async def test_hello_python(test_cli):
     await test_cli.close()
 ```
 
-Of course, If you want add more test to check your lesson is healthy, Just do it.  
-Remember that make sure every sociate test should be in the same test file.
-and every function should with `async`, `test_` prefix and only `test_cli` argument.
+Of course you can add more than one test if you wish.
+Remember that make sure every test should be in the same test file.
+Also, every function should be `async`, have a `test_` prefix and only the `test_cli` argument.
 
 For example:
 ```python
