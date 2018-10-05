@@ -1,13 +1,13 @@
+from stage.one.s9_if import route, data
+from tests.utils import check_attributes, post
 
-import json
+
+def test_attributes():
+    check_attributes(route, data)
 
 
-async def test_if(test_cli):
-    req_data = json.dumps({
-        'field_1': 'age>18'})
-    
-    res = await test_cli.post('/stage/one/if', data=req_data)
-    assert res.status == 200
-    res_data = await res.json()
-    assert res_data['data']['result'] is True
-    await test_cli.close()
+async def test_lesson(test_cli):
+    req_data = {
+        'field_1': 'age>18',
+    }
+    await post(test_cli, route['url'], data=req_data)
