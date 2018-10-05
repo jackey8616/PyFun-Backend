@@ -48,7 +48,7 @@ def answer(stdout, stderr):
         if stderr != []:
             return False
         else:
-            ans = "You are old"
+            ans = "You are old\n"
             if stdout[0].decode() != ans :
                 return False
             return True
