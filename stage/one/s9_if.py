@@ -49,7 +49,7 @@ def answer(stdout, stderr):
             return False
         else:
             ans = "age>18"
-            if stdout[0].decode() != ans:
+            if stdout[0].decode() != ans :
                 return False
             return True
     except Exception:
