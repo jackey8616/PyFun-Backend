@@ -18,7 +18,7 @@ data = {
     'code': [
         'for each in range(0, _____):',
         '    for every in range(_____, 50):',
-        '       print(\'*\', end=\'\')',
+        '        print(\'*\', end=\'\')',
         '    print(\'\')'
     ],
     'fields': []

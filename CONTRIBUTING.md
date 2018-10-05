@@ -98,16 +98,39 @@ For example, `s1_hello_python.py` it's test file is `test_s1_hello_python.py`
 
 Add following code:
 ```python
-import json
+from stage.[stage name].[lesson name] import route, data
+from tests.utils import check_attributes, post
 
-async def test_hello_python(test_cli):
-    # res = await test_cli.post('/replace/with/lesson/frontend/url/', data=json.dumps({ Here should be right answer's dictionary of your lesson, starts from field_1 to field_N }))
-    # For exmaple, hello python have two field to fill in, so send a POST with {'field_1': 'print', 'field_2': 'Hello Python'} dict, the answer should be right, and result should be True
-    res = await test_cli.post('/stage/one/hello_python', data=json.dumps({'field_1': 'print', 'field_2': 'Hello Python'}))
-    assert res.status == 200
-    res_data = await res.json()
-    assert res_data['data']['result'] == True
-    await test_cli.close()
+
+# This test function must declare on the top in order to test first.
+# It checks the attribute is not missing inside the [lesson].py
+# DO NOT REMOVE OR MOVE DOWN THIS FUNCTION !!!
+def test_attributes():
+    check_attributes(route, data)
+
+# This is the main test function, everything you need just only req_data.
+async def test_lesson(test_cli):
+    req_data = {
+        ...
+        'your_filed_with_id': 'field_answer'
+        ...
+    }
+    await post(cli=test_cli, url=route['url'], data=req_data)
+
+# This function provide a inner function for further override.
+# In case you want to customize any check.
+# You can pick one to use.
+# async def test_lesson(rest_cli):
+#     
+#     def override(res_data):
+#         # Any other check you wan to do.
+#
+#     req_data = {
+#         ...
+#         'your_filed_with_id': 'field_answer'
+#         ...
+#     }
+#     await post(cli=test_cli, url=route['url'], data=req_data, callback=override)
 ```
 
 Of course, If you want add more test to check your lesson is healthy, Just do it.  
@@ -119,6 +142,10 @@ For example:
 # I want a new test function named haruna_cute
 async def test_haruna_cute(test_cli):
     ...
-    res = await test_cli.post('/replace/with/lesson/frontend/url/', data=json.dumps({ Data dictionary you want to test }))
+    req_data = {
+        ...
+        'desire_field_key': 'desire_data'
+        ...
+    }
     ...
 ```

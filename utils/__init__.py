@@ -85,8 +85,9 @@ def file_generate(data):
     return file_name
 
 
-def file_execute(file_name):
-    p = Popen(['python3', file_name], stdout=PIPE, stderr=PIPE)
+def file_execute(file_name, python_version='3'):
+    p = Popen(['python{0}'.format(python_version), file_name], stdout=PIPE, 
+              stderr=PIPE)
     stdout, stderr = p.stdout.readlines(), p.stderr.readlines()
     os.remove(file_name)
     return stdout, stderr

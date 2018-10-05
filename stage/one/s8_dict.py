@@ -25,10 +25,10 @@ data = {
         'l = [1, 1, 2, 1, 1, 2, 2]',
         'counter = {}',
         'for i in l:',
-        '   if i in counter:',
-        '       _____[i] += 1',
-        '   else:',
-        '       _____[i] = 1',
+        '    if i in counter:',
+        '        _____[i] += 1',
+        '    else:',
+        '        _____[i] = 1',
         'print(str(counter))'
     ],
     'fields': []
