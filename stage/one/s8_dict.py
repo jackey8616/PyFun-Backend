@@ -1,0 +1,55 @@
+from utils.form import blank_form
+from utils import fields_generate
+
+route = {
+    'type': blank_form, 
+    'url': '/stage/one/dict',
+    'methods': [ 'GET', 'POST' ]
+}
+data = {
+    'title': 'Python dictionaries',  
+    'image': 'https://community-cdn-digitalocean-com.global.ssl.fastly.net/assets/tutorials/images/large/EBOOK_PYTHON_no-name.png?1516826609',
+    'description': [
+        'Lets get familiar with Python diciontaries (dict).',
+        'In Python, dictionary is a collection of key value pairs, ' +
+        'such that each key of a given type maps to a value of a given type.',
+        'You can reference dictionary methods here: https://docs.python.org/3/' +
+        'tutorial/datastructures.html#dictionaries',
+        '\n',
+        'Now lets work on some exercises. You have a following ' +
+        'array of integers: [1, 1, 2, 1, 1, 2, 2]',
+        'Use a dictionary to count the frequency of each element ' +
+        'do not use any other data structures.'
+    ],
+    'code': [
+        'l = [1, 1, 2, 1, 1, 2, 2]',
+        'counter = {}',
+        'for i in l:',
+        '   if i in counter:',
+        '       _____[i] += 1',
+        '   else:',
+        '       _____[i] = 1',
+        'print(str(counter))'
+    ],
+    'fields': []
+}
+
+data['fields'] = fields_generate(data)  # NEVER remove this line!!
+
+async def sanic_request(request):
+    try:
+        return override(request)
+    except NameError:
+        global data, route
+        return route['type'](data, request, answer)
+
+def answer(stdout, stderr):
+    try:
+        if stderr != []:
+            return False
+        else:
+            ans1 = {1: 4, 2: 3}
+            ans2 = {2: 3, 1: 4}
+            return stdout[0].decode() == str(ans1) + "\n" or stdout[0].decode() == str(ans2) + "\n"
+    except Exception:
+        return False
