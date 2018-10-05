@@ -1,15 +1,19 @@
-import json
+from stage.two.s1_list_comprehensions import route, data
+from tests.utils import check_attributes, post
 
 
-async def test_list_comprehensions(test_cli):
-    req_data = json.dumps({
+def test_attributes():
+    check_attributes(route, data)
+
+
+async def test_lesson(test_cli):
+    def override(res_data):
+        pass
+
+    req_data = {
         'field_1': 'for',
         'field_2': 'in',
         'field_3': 'range',
         'field_4': '10'
-    })
-    res = await test_cli.post('/stage/two/list_comprehensions', data=req_data)
-    assert res.status == 200
-    res_data = await res.json()
-    assert res_data['data']['result'] is True
-    await test_cli.close()
+    }
+    await post(cli=test_cli, url=route['url'], data=req_data, callback=override)
