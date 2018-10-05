@@ -1,32 +1,37 @@
 
 # Contributing new stage or lesson
 
-Inside `stage` module there are two sub-modules named `one` and `two`.  
-Each sub-module folder should contain `__init__.py`.  
+Inside `stage` module.
+There are currently two sub-modules named `one` and `two`.
+Each sub-module folder should contain an `__init__.py` for auto import.
 
 ## Creating a new stage
-Inside `stage` folder, `mkdir` a new stage with name you want.  
-Create a minimal `__init__.py` with following `dict`:  
+Inside the `stage` folder, `mkdir` a new stage with a name you want.  
+At minimum, you must create an `__init__.py` with following the `dict` to allow for auto import:  
+
 ```python
 setup = {
-  'path': 'backend/file/path/to/sub-module',   # This str will be use in os.path.join(), Do NOT starts with /
+  'path': 'backend/file/path/to/sub-module',   # This str will be use in os.path.join(), Do NOT start with /
   'url': '/frontend/url/to/lesson',            # index url for stage page. Will be DEPRECATED soon.
   'package': 'package.to.sub-module'           # Package path to sub-module, use for __import__ function call.
 }
 ```
 
 ## Creating a new lesson
-Make sure there is a `__init__.py` inside the `stage/[stage_name]` folder (such as `stage/one`).
 
-Create a new file with any name you like (although snake_case is preferred). 
-**IMPORTANT**
+Inside the `stage/[stage_name]` folder (such as `stage/one`).  
+Make sure there is a `__init__.py` file.  
+
+Then, create a new file with an appropriate name to describe the lesson. Please see each each lessons's name
+to get an idea of proper file naming convention. It is helpful if each file name describes the lesson's function name.  
+
+**For Example:**
 ```
-If you wish your lessons to be sorted then they should be named with an index. For example:
-  Say you have a lesson you want to be called i_love_haruna, and you want it to be the 35th lesson.
-  You shoud create a file called s35_i_love_haruna.py with a async function like:
-  async def i_love_haruna(request):
+  You have a lesson you want to call i_love_haruna, and you want it to be the 35th lesson in the stage,
+  Then you shoud create a file called s35_i_love_haruna.py with a async function like:
 ```
-With following code:  
+
+Follow the code structure below to set up your lesson!
 ```python
 from utils.form import blank_form
 from utils import fields_generate
@@ -85,12 +90,13 @@ def answer(stdout, stderr):
 
 ```
 
-## Provide a test
-After you create a new lesson it is important to make sure the code functions as intended.  
-Inside the `tests/stage/[stage name]/` folder, create a new test.py file that starts with `test_`.
-For example, `s1_hello_python.py` would have a test file called `test_s1_hello_python.py`
+## Writing tests
+After you create a new lesson, you want to test your code to make sure it functions properly.
+Inside `tests/stage/[stage name]/` folder, create a new test.py file, which must start with `test_`.
+For example, the `s1_hello_python.py` lesson's corresponding test file is `test_s1_hello_python.py`.
 
-Add following code:
+
+Use the structure below to build your tests:
 ```python
 from stage.[stage name].[lesson name] import route, data
 from tests.utils import check_attributes, post
@@ -127,9 +133,9 @@ async def test_lesson(test_cli):
 #     await post(cli=test_cli, url=route['url'], data=req_data, callback=override)
 ```
 
-Of course you can add more than one test if you wish.
-Remember that make sure every test should be in the same test file.
-Also, every function should be `async`, have a `test_` prefix and only the `test_cli` argument.
+Of course, if you want to add more tests to make sure your lesson is healthy, go for it!
+Remember to make sure every test for each lesson is in the same test file.
+Please refer to test files in this project to see how to use `test_cli.post` requests to test your lessons!
 
 For example:
 ```python
@@ -143,3 +149,11 @@ async def test_haruna_cute(test_cli):
     }
     ...
 ```
+
+## Testing Your Lessons
+Once you made tests for your lesson, be sure to test it locally before making a pull request!
+You can easily run all tests by executing `python -m pytest` on the command line. Or, if you only want to test your new functionality, run `python -m pytest tests/stage/[stage number]/[your_test_file_name.py]`
+
+Pytest will alert you which of your tests fail so you can easily fix them! If you do not catch these locally, the repository has Travis integration to make sure your builds pass or fail, so be sure to check your pull request after you make it to see if you succeed!
+
+Good luck!
