@@ -1,7 +1,7 @@
 import json
 
 
-async def test_list(test_cli):
+async def test_functions(test_cli):
     req_data = json.dumps({
         'field_1': 'num1',
         'field_2': 'num2',
