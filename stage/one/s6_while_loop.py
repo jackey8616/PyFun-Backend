@@ -11,8 +11,8 @@ route = {
 data = {
     'title': 'While Loop',
     'description': [
-        'Lets print 1 to 10 in ascending order.',
-        'Fill the fields that are missing!'
+        'Let\'s print 1 to 10 in ascending order.',
+        'Fill the missing fields!'
     ],
     'code': [
         'indicator = 10',
