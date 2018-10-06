@@ -1,4 +1,4 @@
-import os, time
+import os, time, re
 from os import listdir
 from os.path import isfile, isdir, join
 from subprocess import Popen, PIPE
@@ -64,9 +64,20 @@ def import_files(pys, _globals, _locals, path):
 
 
 def list_paths(pys):
-    ls = []
-    for (module, file_name) in pys:
-        ls.append(module.replace('_', ' '))
+    ls = {}
+    for (name, module) in pys.items():
+        file_name = module.__file__[module.__file__.rfind('/') + 1:]
+        index = ''
+        for each in range(0, len(file_name) - 2):
+            if file_name[each].isdigit():
+                index += file_name[each]
+            if file_name[each + 1] == '_':
+                break
+        ls[name] = {
+            'index': index,
+            'title': module.data['title'],
+            'url': module.route['url']
+        }
     return ls
 
 

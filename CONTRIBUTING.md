@@ -11,6 +11,7 @@ At minimum, you must create an `__init__.py` with following the `dict` to allow 
 
 ```python
 setup = {
+  'index': 0,                                  # Stage index, can not duplicate, before setting, please check first.
   'path': 'backend/file/path/to/sub-module',   # This str will be use in os.path.join(), Do NOT start with /
   'url': '/frontend/url/to/lesson',            # index url for stage page. Will be DEPRECATED soon.
   'package': 'package.to.sub-module'           # Package path to sub-module, use for __import__ function call.
