@@ -1,5 +1,5 @@
 from stage.one.s1_hello_python import route, data
-from tests.utils import check_attributes, post
+from tests.utils import *
 
 
 def test_attributes():
@@ -7,11 +7,9 @@ def test_attributes():
 
 
 async def test_lesson(test_cli):
-    def override(res_data):
-        pass
-
+    await get(cli=test_cli, url=route['url'])
     req_data = {
         'field_1': 'print',
         'field_2': 'Hello Python'
     }
-    await post(cli=test_cli, url=route['url'], data=req_data, callback=override)
+    await post(cli=test_cli, url=route['url'], data=req_data)

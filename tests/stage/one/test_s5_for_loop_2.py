@@ -1,5 +1,5 @@
 from stage.one.s5_for_loop_2 import route, data
-from tests.utils import check_attributes, post
+from tests.utils import *
 
 
 def test_attributes():
@@ -7,6 +7,7 @@ def test_attributes():
 
 
 async def test_lesson(test_cli):
+    await get(cli=test_cli, url=route['url'])
     req_data = {
         'field_1': '5',
         'field_2': 'each + 45'

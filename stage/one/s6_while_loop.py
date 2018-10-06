@@ -10,6 +10,7 @@ route = {
 
 data = {
     'title': 'While Loop',
+    'author': 'rozig',
     'description': [
         'Let\'s print 1 to 10 in ascending order.',
         'Fill the missing fields!'

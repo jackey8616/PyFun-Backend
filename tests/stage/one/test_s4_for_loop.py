@@ -1,5 +1,5 @@
 from stage.one.s4_for_loop import route, data
-from tests.utils import check_attributes, post
+from tests.utils import *
 
 
 def test_attributes():
@@ -7,6 +7,7 @@ def test_attributes():
 
 
 async def test_lesson(test_cli):
+    await get(cli=test_cli, url=route['url'])
     req_data = {
         'field_1': '0',
         'field_2': '10',

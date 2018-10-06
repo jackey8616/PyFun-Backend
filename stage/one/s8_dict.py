@@ -7,7 +7,8 @@ route = {
     'methods': [ 'GET', 'POST' ]
 }
 data = {
-    'title': 'Python dictionaries',  
+    'title': 'Dictionaries',
+    'author': 'vincentt117',
     'image': 'https://community-cdn-digitalocean-com.global.ssl.fastly.net/assets/tutorials/images/large/EBOOK_PYTHON_no-name.png?1516826609',
     'description': [
         'Lets get familiar with Python diciontaries (dict).',

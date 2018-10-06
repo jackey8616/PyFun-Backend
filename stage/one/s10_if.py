@@ -9,7 +9,8 @@ route = {
 }
 
 data = {
-    'title': 'Python Strings',
+    'title': 'If',
+    'author': 'claudiavmbrito',
     'description': [
         'Lets get familiar with Python If-Conditions!',
         'As the name indicates, If-conditions work as ' +

@@ -81,8 +81,8 @@ def list_paths(pys):
     return ls
 
 
-def md5_content(data):
-    data = str(time.time()) + data
+def md5_content(data, time=time.time()):
+    data = str(time) + data
     hasher = md5()
     hasher.update(data.encode('utf-8'))
     return hasher.hexdigest()

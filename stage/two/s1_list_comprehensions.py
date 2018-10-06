@@ -9,7 +9,8 @@ route = {
 }
 
 data = {
-    'title': 'Python List Comprehensions',
+    'title': 'List Comprehensions',
+    'author': 'joshhacksthings',
     'description': [
         'Let\'s learn about list comprehensions!',
         'In Python, list comprehensions combine the `list` and `for loop` ' +

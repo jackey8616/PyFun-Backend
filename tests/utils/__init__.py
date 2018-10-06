@@ -11,6 +11,14 @@ def check_attributes(route, data):
     assert data['code'] is not None
     assert data['fields'] is not None
 
+async def get(cli, url, callback=None):
+    res = await cli.get(url)
+    assert res.status == 200
+
+    res_data = await res.json()
+    
+    if callback:
+        callback(res_data)
 
 async def post(cli, url, data, callback=None):
     if type(data) is not str:

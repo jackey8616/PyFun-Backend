@@ -9,7 +9,8 @@ route = {
 }
 
 data = {
-    'title': 'Python List',
+    'title': 'List',
+    'author': 'rozig',
     'description': [
         'Lets get familiar with Python list.',
         'In Python, list is a collection which is ordered and mutable ' +

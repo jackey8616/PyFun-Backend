@@ -9,7 +9,8 @@ route = {
 }
 
 data = {
-    'title': 'Python Functions',
+    'title': 'Functions',
+    'author': 'Oshawk',
     'description': [
         'Functions are where Python start to become really powerful.',
         'They provide a simple way to divide your code into sections or easily perform common tasks.',

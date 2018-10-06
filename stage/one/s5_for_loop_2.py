@@ -10,6 +10,7 @@ route = {
 
 data = {
     'title': 'For Loop (2)',
+    'author': 'Official',
     'description': [
         'This time I want some stars in triangle.',
         'Please give me a UP-SIDE-DOWN triangle stars with both width' +

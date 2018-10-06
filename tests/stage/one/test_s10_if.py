@@ -1,5 +1,5 @@
 from stage.one.s10_if import route, data
-from tests.utils import check_attributes, post
+from tests.utils import *
 
 
 def test_attributes():
@@ -7,6 +7,7 @@ def test_attributes():
 
 
 async def test_lesson(test_cli):
+    await get(cli=test_cli, url=route['url'])
     req_data = {
         'field_1': 'age>18',
     }
