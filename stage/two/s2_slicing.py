@@ -14,10 +14,10 @@ data = {
         'Python has an amazing feature just for that called slicing.',
         'Slicing can not only be used for lists, tuples or arrays,' +
         'but custom data structures as well.',
-        'It can be use like: list[start:end:increment]'
+        'It can be used like: list[start:end:increment]',
         '>>> a = [1, 2, 3, 4]',
         '>>> a[1:2]',
-        '[2, 3]'
+        '[2, 3]',
         '>>> a[1:]',
         '[2, 3, 4]',
         '>>> a[::-1]',
