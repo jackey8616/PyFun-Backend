@@ -6,7 +6,7 @@ Frontend is written in [Vue2](https://vuejs.org/), please reference at [here](ht
 
 # Contributing
 If you want to add more stages or lessons.
-Reference at [here](https://github.com/YunOSC/PyFun-Backend/blob/master/CONTRIBUTING.md).
+Reference at [here](https://github.com/YunOSC/PyFun-Backend/blob/master/.github/CONTRIBUTING.md).
 
 If you want to contribute to the code itself.
 Just fork and send PRs.
