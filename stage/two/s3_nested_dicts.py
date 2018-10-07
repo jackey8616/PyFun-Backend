@@ -18,7 +18,6 @@ data = {
         'check if once we add up the duration of all the songs it will be at least 15 minutes!' 
         '\n',
         'Our starter code is as follows ' 
-        '' 
         'We want to take the Duration for all the songs and add them up!' 
         'Using a for loop can help us ,
         'Given the following for loop write the if statement logic to '+ 
