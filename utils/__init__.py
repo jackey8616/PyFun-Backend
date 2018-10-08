@@ -1,9 +1,9 @@
+import io
 import os
-import time
 from os import listdir
 from os.path import isfile, isdir, join
-from subprocess import Popen, PIPE
-from hashlib import md5
+import sys
+import traceback
 
 
 def fields_generate(data):
@@ -82,24 +82,35 @@ def list_paths(pys):
     return ls
 
 
-def md5_content(data, time=time.time()):
-    data = str(time) + data
-    hasher = md5()
-    hasher.update(data.encode('utf-8'))
-    return hasher.hexdigest()
+def data_execute(data):
+    captured_stdout = io.StringIO()
+    captured_stderr = io.StringIO()
+    orig_stdout = sys.stdout
+    orig_stderr = sys.stderr
+    try:
+        sys.stdout = captured_stdout
+        sys.stderr = captured_stderr
+        exec(data)
+    except Exception:
+        captured_stderr.write(traceback.format_exc())
+    finally:
+        sys.stdout = orig_stdout
+        sys.stderr = orig_stderr
 
+    # split into lines and encode() to preserve existing API
+    def get_lines(sio):
+        value = sio.getvalue()
+        if not value:
+            return []
 
-def file_generate(data):
-    file_name = os.path.join(os.getcwd(),
-                             'tmp/{0}.py'.format(md5_content(data)))
-    with open(file_name, 'w') as py_file:
-        py_file.write(data)
-    return file_name
+        should_have_final_newline = False
+        if value[-1] == '\n':
+            should_have_final_newline = True
+            value = value[:-1]
 
+        lines = [(line + '\n').encode() for line in value.split('\n')]
+        if not should_have_final_newline:
+            lines[-1] = lines[-1][:-1]
+        return lines
 
-def file_execute(file_name, python_version='3'):
-    p = Popen(['python{0}'.format(python_version), file_name], stdout=PIPE,
-              stderr=PIPE)
-    stdout, stderr = p.stdout.readlines(), p.stderr.readlines()
-    os.remove(file_name)
-    return stdout, stderr
+    return get_lines(captured_stdout), get_lines(captured_stderr)
