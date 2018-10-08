@@ -1,4 +1,4 @@
-import os, time
+import os, time, re
 from os import listdir
 from os.path import isfile, isdir, join
 from subprocess import Popen, PIPE
@@ -64,14 +64,25 @@ def import_files(pys, _globals, _locals, path):
 
 
 def list_paths(pys):
-    ls = []
-    for (module, file_name) in pys:
-        ls.append(module.replace('_', ' '))
+    ls = {}
+    for (name, module) in pys.items():
+        file_name = module.__file__[module.__file__.rfind('/') + 1:]
+        index = ''
+        for each in range(0, len(file_name) - 2):
+            if file_name[each].isdigit():
+                index += file_name[each]
+            if file_name[each + 1] == '_':
+                break
+        ls[name] = {
+            'index': index,
+            'title': module.data['title'],
+            'url': module.route['url']
+        }
     return ls
 
 
-def md5_content(data):
-    data = str(time.time()) + data
+def md5_content(data, time=time.time()):
+    data = str(time) + data
     hasher = md5()
     hasher.update(data.encode('utf-8'))
     return hasher.hexdigest()
@@ -85,8 +96,9 @@ def file_generate(data):
     return file_name
 
 
-def file_execute(file_name):
-    p = Popen(['python3', file_name], stdout=PIPE, stderr=PIPE)
+def file_execute(file_name, python_version='3'):
+    p = Popen(['python{0}'.format(python_version), file_name], stdout=PIPE,
+              stderr=PIPE)
     stdout, stderr = p.stdout.readlines(), p.stderr.readlines()
     os.remove(file_name)
     return stdout, stderr

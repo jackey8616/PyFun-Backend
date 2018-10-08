@@ -7,5 +7,8 @@ install:
   - pip install -r requirements-dev.txt
 
 script:
-  - python -m pytest tests/
+  - python -m pytest --cov=./ --cov-report term-missing --cov-config=.coveragerc ./tests
+
+after_success:
+  - codecov --token ${CODECOV_TOKEN}
 

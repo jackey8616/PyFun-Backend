@@ -1,4 +1,4 @@
-from stage.one.s1_hello_python import route, data
+from stage.one.s8_dict import route, data
 from tests.utils import *
 
 
@@ -9,7 +9,7 @@ def test_attributes():
 async def test_lesson(test_cli):
     await get(cli=test_cli, url=route['url'])
     req_data = {
-        'field_1': 'print',
-        'field_2': 'Hello Python'
+        'field_1': 'counter',
+        'field_2': 'counter'
     }
     await post(cli=test_cli, url=route['url'], data=req_data)

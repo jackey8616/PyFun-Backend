@@ -10,6 +10,7 @@ route = {
 
 data = {
     'title': 'For Loop',
+    'author': 'Official',
     'description': [
         'I like A.P. (Arithmetic Progression)',
         'Can you give me a A.P. with five numbers,',

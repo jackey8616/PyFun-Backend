@@ -1,14 +1,16 @@
-import json
+from stage.one.s4_for_loop import route, data
+from tests.utils import *
 
 
-async def test_for_loop(test_cli):
-    req_data = json.dumps({
+def test_attributes():
+    check_attributes(route, data)
+
+
+async def test_lesson(test_cli):
+    await get(cli=test_cli, url=route['url'])
+    req_data = {
         'field_1': '0',
         'field_2': '10',
         'field_3': '2'
-    })
-    res = await test_cli.post('/stage/one/for_loop', data=req_data)
-    assert res.status == 200
-    res_data = await res.json()
-    assert res_data['data']['result'] is True
-    await test_cli.close()
+    }
+    await post(test_cli, route['url'], data=req_data)

@@ -10,6 +10,7 @@ route = {
 
 data = {
     'title': 'If ElseIf and Else',
+    'author': 'Official',
     'image': 'https://myanimelist.cdn-dena.com/images/characters/6/276027.jpg',
     'description': [
         'Do you know Haruna?',

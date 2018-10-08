@@ -1,10 +1,12 @@
-import json
+from stage.one.s3_if_elif_else import route, data
+from tests.utils import *
 
 
-async def test_if_elif_else(test_cli):
-    req_data = json.dumps({'field_1': '\'test\''})
-    res = await test_cli.post('/stage/one/if_elif_else', data=req_data)
-    assert res.status == 200
-    res_data = await res.json()
-    assert res_data['data']['result'] is True
-    await test_cli.close()
+def test_attributes():
+    check_attributes(route, data)
+
+
+async def test_lesson(test_cli):
+    await get(cli=test_cli, url=route['url'])
+    req_data = {'field_1': '\'test\''}
+    await post(test_cli, route['url'], data=req_data)

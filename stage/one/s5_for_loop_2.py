@@ -10,6 +10,7 @@ route = {
 
 data = {
     'title': 'For Loop (2)',
+    'author': 'Official',
     'description': [
         'This time I want some stars in triangle.',
         'Please give me a UP-SIDE-DOWN triangle stars with both width' +
@@ -18,7 +19,7 @@ data = {
     'code': [
         'for each in range(0, _____):',
         '    for every in range(_____, 50):',
-        '       print(\'*\', end=\'\')',
+        '        print(\'*\', end=\'\')',
         '    print(\'\')'
     ],
     'fields': []
