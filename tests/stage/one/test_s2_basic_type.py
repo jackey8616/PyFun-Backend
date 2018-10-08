@@ -1,6 +1,7 @@
 from stage.one.s2_basic_type import route, data
 from tests.utils import *
 
+
 def test_attributes():
     check_attributes(route, data)
 

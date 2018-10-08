@@ -1,4 +1,3 @@
-import traceback
 from sanic.response import json
 
 from utils import get_import_files, import_files
@@ -22,6 +21,7 @@ async def index(request):
         }
     return json({'success': True, 'data': stages})
 
+
 async def stage_index(request, stage_name):
     lessons = {}
     global imports, module_pys
@@ -35,13 +35,13 @@ async def stage_index(request, stage_name):
 
 def add_route(app):
     app.add_route(index, '/stage/', methods=['GET'])
-    app.add_route(stage_index, '/stage/<stage_name>', [ 'GET' ])
+    app.add_route(stage_index, '/stage/<stage_name>', ['GET'])
     global imports, module_pys, module_imports
     for (key, module) in imports.items():
         setup = getattr(module, 'setup')
         module_pys[key] = get_import_files(setup['path'])
         module_imports[key] = import_files(module_pys[key], globals(), locals(),
-                                      setup['package'])
+                                           setup['package'])
         for (key, value) in module_imports[key].items():
             route = value.route
             app.add_route(getattr(value, 'sanic_request'), route['url'],

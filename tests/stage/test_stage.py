@@ -1,5 +1,6 @@
 from tests.utils import *
 
+
 async def test_index_get(test_cli):
     def override(res_data):
         data = res_data['data']
@@ -13,6 +14,7 @@ async def test_index_get(test_cli):
         assert url == '/stage/one/', url
     await get(cli=test_cli, url='/stage/', callback=override)
 
+
 async def test_lesson_get(test_cli):
     def override(res_data):
         data = res_data['data']
@@ -25,6 +27,7 @@ async def test_lesson_get(test_cli):
         assert index == '1', index
         assert url == '/stage/one/hello_python'
     await get(cli=test_cli, url='/stage/one', callback=override)
+
 
 async def no_stage_lesson_get(test_cli):
     def override(res_data):

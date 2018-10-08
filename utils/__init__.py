@@ -1,4 +1,5 @@
-import os, time, re
+import os
+import time
 from os import listdir
 from os.path import isfile, isdir, join
 from subprocess import Popen, PIPE

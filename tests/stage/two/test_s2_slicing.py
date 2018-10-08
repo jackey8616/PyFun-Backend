@@ -9,7 +9,7 @@ def test_attributes():
 async def test_lesson(test_cli):
     def override(res_data):
         pass
-    
+
     req_data = {
         'field_1': 3,
         'field_2': 8,

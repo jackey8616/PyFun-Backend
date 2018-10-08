@@ -1,4 +1,5 @@
-import sys, os, click
+import os
+import click
 from sanic import Sanic
 from sanic.response import json
 from sanic_cors import CORS
@@ -28,7 +29,6 @@ def run(host, port, test):
     stage_add_route(app)
     if not test:
         app.run(host=host, port=port)
-
 
 
 async def index(request):
