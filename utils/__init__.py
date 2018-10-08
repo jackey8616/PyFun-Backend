@@ -1,4 +1,5 @@
-import os, time, re
+import os
+import time
 from os import listdir
 from os.path import isfile, isdir, join
 from subprocess import Popen, PIPE
@@ -97,7 +98,7 @@ def file_generate(data):
 
 
 def file_execute(file_name, python_version='3'):
-    p = Popen(['python{0}'.format(python_version), file_name], stdout=PIPE, 
+    p = Popen(['python{0}'.format(python_version), file_name], stdout=PIPE,
               stderr=PIPE)
     stdout, stderr = p.stdout.readlines(), p.stderr.readlines()
     os.remove(file_name)

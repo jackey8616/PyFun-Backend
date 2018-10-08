@@ -1,11 +1,13 @@
 from utils.form import blank_form
 from utils import fields_generate
 
+
 route = {
-    'type': blank_form, 
+    'type': blank_form,
     'url': '/stage/two/slicing',
-    'methods': [ 'GET', 'POST' ]
+    'methods': ['GET', 'POST']
 }
+
 data = {
     'title': 'Slicing',
     'image': 'https://i.stack.imgur.com/o99aU.png',
@@ -38,6 +40,7 @@ data = {
 }
 data['fields'] = fields_generate(data)
 
+
 async def sanic_request(request):
     try:
         return override(request)
@@ -47,9 +50,11 @@ async def sanic_request(request):
 
 # If you don't want to use any type of those.
 # You can write yourself one, just properly handle Sanic request.
-# **IMPORTANT** Unless you are sure to use customize one, or do not comment out this function.
+# **IMPORTANT** Unless you are sure to use customize one, or do not comment
+# out this function.
 # def override(request):
 #     pass
+
 
 def answer(stdout, stderr):
     try:
@@ -57,5 +62,5 @@ def answer(stdout, stderr):
             return False
         else:
             return stdout[0].decode() == '[4, 8, 7, 6, 3]\n'
-    except:
+    except Exception:
         return False

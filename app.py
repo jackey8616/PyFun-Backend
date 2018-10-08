@@ -1,4 +1,5 @@
-import sys, os, click
+import os
+import click
 from sanic import Sanic
 from sanic.response import json
 from sanic_cors import CORS
