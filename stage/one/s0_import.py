@@ -11,9 +11,7 @@ route = {
 data = {
     'title': 'Import~',
     'author': 'Official',
-    'image': 'https://community-cdn-digitalocean-com.global.ssl.fastly.net/' +
-             'assets/tutorials/images/large/' +
-             'EBOOK_PYTHON_no-name.png?1516826609',
+    'image':''
     'description': [
         'Yo!',
         'If you want to use some package',
