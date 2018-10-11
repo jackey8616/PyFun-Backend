@@ -1,7 +1,7 @@
 import traceback
 from sanic.response import json
 
-from utils import concat_code, file_generate, file_execute
+from utils import concat_code, data_execute
 
 
 def blank_form(data, request, answer):
@@ -10,8 +10,7 @@ def blank_form(data, request, answer):
             return json({'success': True, 'data': data})
         else:
             code_data = concat_code(data, request.json)
-            file_name = file_generate(code_data)
-            stdout, stderr = file_execute(file_name)
+            stdout, stderr = data_execute(code_data)
             result = answer(stdout, stderr)
             return json({
                 'success': True,
