@@ -11,7 +11,7 @@ route = {
 data = {
     'title': 'Import~',
     'author': 'Official',
-    'image':''
+    'image':'',
     'description': [
         'Yo!',
         'If you want to use some package',
