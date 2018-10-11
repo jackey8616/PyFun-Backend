@@ -9,16 +9,15 @@ route = {
 }
 
 data = {
-    'title': 'Import~',
+    'title': 'Import',
     'author': 'Official',
-    'image':'',
     'description': [
         'Yo!',
-        'If you want to use some package',
-        'What command should you add?'
+        'If you want to use pyperclip that is a package',
+        'What command should you add ?'
     ],
     'code': [
-        '_____'
+        '_____(\'_____\')'
     ],
     'fields': []
 }
@@ -39,6 +38,6 @@ def answer(stdout, stderr):
         if stderr != []:
             return False
         else:
-            return stdout[0].decode() == 'import\n'
+            return stdout[0].decode() == 'pyperclip\n'
     except Exception:
         return False
