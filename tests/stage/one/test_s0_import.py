@@ -9,6 +9,8 @@ def test_attributes():
 async def test_lesson(test_cli):
     await get(cli=test_cli, url=route['url'])
     req_data = {
-        'field_1': 'import'
+        'field_1':'import',
+        'field_2':'pyperclip'
+
     }
     await post(cli=test_cli, url=route['url'], data=req_data)
