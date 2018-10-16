@@ -1,14 +1,7 @@
 import os
 from click.testing import CliRunner
 
-from app import path_check, run
-
-
-def test_path_check():
-    path = os.path.join(os.getcwd(), 'tmp/')
-    if not os.path.exists(path):
-        path_check()
-    assert os.path.exists(path)
+from app import run
 
 
 def test_run():

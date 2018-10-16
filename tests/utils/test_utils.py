@@ -1,5 +1,3 @@
-import time
-
 from utils import *
 
 
@@ -36,10 +34,3 @@ def test_list_paths():
     assert out['hello_python']['index'] == '1'
     assert out['hello_python']['title'] == pys['hello_python'].data['title']
     assert out['hello_python']['url'] == pys['hello_python'].route['url']
-
-
-def test_md5_content():
-    md5 = __import__('hashlib').md5()
-    t = time.time()
-    data = 'abc'
-    out = md5.update((str(t) + data).encode('utf-8'))
