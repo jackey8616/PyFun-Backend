@@ -50,14 +50,6 @@ async def sanic_request(request):
         global data, route
         return route['type'](data, request, answer)
 
-# If you don't want to use any type of those.
-# You can write yourself one, just properly handle Sanic request.
-# **IMPORTANT** Unless you are sure to use customize one, or do not comment
-# out this function.
-# def override(request):
-#     pass
-
-
 def answer(stdout, stderr):
     try:
         if stderr != []:
