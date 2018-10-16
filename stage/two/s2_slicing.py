@@ -26,14 +26,16 @@ data = {
         '[4, 3, 2, 1]',
         'Now let\'s do an exercise.',
         '\n'
-        'There is a list: [0, 1, 2, 3, 6, 7, 8, 4, 5, 9, 10],',
+        'There is a list: [0, 1, 2, 4, 8, 7, 6, 3, 5, 9, 10],',
         'I want to generate [4, 8, 7, 6, 3] by slicing.',
         'But i don\'n know how to do it, can you help me?'
     ],
     'code': [
+        'a = [0, 1, 2, 4, 8, 7, 6, 3, 5, 9, 10]',
+        'print(a[_____:_____])',
+        '# Also try this',
         'a = [0, 1, 2, 3, 6, 7, 8, 4, 5, 9, 10]',
         'print(a[_____:_____][::_____])',
-        '# Also try this',
         'print(a[_____:_____:_____])'
     ],
     'fields': []
@@ -47,14 +49,6 @@ async def sanic_request(request):
     except NameError:
         global data, route
         return route['type'](data, request, answer)
-
-# If you don't want to use any type of those.
-# You can write yourself one, just properly handle Sanic request.
-# **IMPORTANT** Unless you are sure to use customize one, or do not comment
-# out this function.
-# def override(request):
-#     pass
-
 
 def answer(stdout, stderr):
     try:
