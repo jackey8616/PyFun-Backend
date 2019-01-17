@@ -12,7 +12,7 @@ data = {
     'title': 'While Loop',
     'author': 'rozig',
     'description': [
-        'Let\'s print 1 to 10 in ascending order.',
+        'Let\'s print 1 to 10 in descending order.',
         'Fill the missing fields!'
     ],
     'code': [

@@ -4,16 +4,16 @@ from utils import fields_generate
 
 route = {
     'type': blank_form,
-    'url': '/stage/one/for_loop_2',
+    'url': '/stage/one/nested_for_loop',
     'methods': ['GET', 'POST']
 }
 
 data = {
-    'title': 'For Loop (2)',
+    'title': 'Nested For Loop',
     'author': 'Official',
     'description': [
         'This time I want some stars in triangle.',
-        'Please give me a UP-SIDE-DOWN triangle stars with both width' +
+        'Please give me a UP-SIDE-DOWN triangle stars with both width ' +
         'and height in 5.'
     ],
     'code': [

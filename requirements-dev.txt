@@ -18,7 +18,7 @@ py==1.6.0
 pytest==3.8.2
 pytest-cov==2.6.0
 pytest-sanic==0.1.13
-requests==2.19.1
+requests==2.21.0
 sanic==0.8.3
 Sanic-Cors==0.9.6
 Sanic-Plugins-Framework==0.6.3.dev20180717

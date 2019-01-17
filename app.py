@@ -3,12 +3,10 @@ import click
 from sanic import Sanic
 from sanic.response import json
 from sanic_cors import CORS
-
 from stage import add_route as stage_add_route
 
 
 app = None
-
 
 @click.command()
 @click.option('--host', default='0.0.0.0', type=str)
@@ -18,10 +16,15 @@ def run(host, port, test):
     global app
     app = Sanic()
     CORS(app)
+    app.add_route(favicon, '/favicon.ico', methods=['GET'])
     app.add_route(index, '/', methods=['GET'])
     stage_add_route(app)
     if not test:
         app.run(host=host, port=port)
+
+
+async def favicon(request):
+    return json({})
 
 
 async def index(request):
