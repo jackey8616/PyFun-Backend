@@ -4,30 +4,26 @@ from utils import fields_generate
 
 route = {
     'type': blank_form,
-    'url': '/stage/YunWC2019/comparisions',
+    'url': '/stage/YunWC2019/while_loop',
     'methods': ['GET', 'POST']
 }
 
 data = {
-    'title': 'Comparisons',
+    'title': 'While Loop',
     'author': 'Official',
     'description': [
-        'Who is bigger, and who is smaller?',
-        'Show me the answers of these comparasions!',
-        'Watch out the capital!',
-        '比大小！',
-        '告訴我這些判斷式的結果！',
-        '別忘記字首大小寫喔！'
+        'Print me a result like below.',
+        '填滿空格, 然後印出下列結果:',
+        '5', '4', '3', '2', '1', '0', '10'
     ],
     'code': [
-        '10 > 3',
-        '13 <= 10 + 3',
-        '16 == 16',
-        '6 != int("6")',
-        'print(_____)',
-        'print(_____)',
-        'print(_____)',
-        'print(_____)'
+        'num = _____',
+        '',
+        '_____ num > 0:',
+        '    num -= 1',
+        '    print(num)',
+        '',
+        'print(num + _____)'
     ],
     'fields': []
 }
@@ -48,7 +44,7 @@ def answer(stdout, stderr):
         if stderr != []:
             return False
         else:
-            ans = ['True', 'True', 'False', 'False']
+            ans = ['5', '4', '3', '2', '1', '0', '10']
             for each in range(0, len(ans)):
                 if stdout[each].decode() != ans[each] + '\n':
                     return False

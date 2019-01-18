@@ -4,30 +4,36 @@ from utils import fields_generate
 
 route = {
     'type': blank_form,
-    'url': '/stage/YunWC2019/comparisions',
+    'url': '/stage/YunWC2019/boolean_logic',
     'methods': ['GET', 'POST']
 }
 
 data = {
-    'title': 'Comparisons',
+    'title': 'Boolean Logic',
     'author': 'Official',
     'description': [
-        'Who is bigger, and who is smaller?',
-        'Show me the answers of these comparasions!',
-        'Watch out the capital!',
-        '比大小！',
-        '告訴我這些判斷式的結果！',
-        '別忘記字首大小寫喔！'
+        'True or False or True or False.',
+        'Can you let these results be Good?',
+        '010101001101011，數位邏輯好討厭ㄋㄧ',
+        '填滿空格, 我想看到"Good!"的結果！'
     ],
     'code': [
-        '10 > 3',
-        '13 <= 10 + 3',
-        '16 == 16',
-        '6 != int("6")',
-        'print(_____)',
-        'print(_____)',
-        'print(_____)',
-        'print(_____)'
+        'score = _____',
+        'if score >= 90 and score <= 100:',
+        '    print("Good!")',
+        '',
+        'age = 20',
+        'money = 300',
+        '',
+        'if age > 26 _____ money > 100:',
+        '    print("Good!")',
+        '',
+        'if not _____:',
+        '    print("Bad!")',
+        'elif not (2+2 _____ 4):',
+        '    print("Good!")',
+        'else:',
+        '    print("Bad")'
     ],
     'fields': []
 }
@@ -48,7 +54,7 @@ def answer(stdout, stderr):
         if stderr != []:
             return False
         else:
-            ans = ['True', 'True', 'False', 'False']
+            ans = ['Good!', 'Good!', 'Good!']
             for each in range(0, len(ans)):
                 if stdout[each].decode() != ans[each] + '\n':
                     return False

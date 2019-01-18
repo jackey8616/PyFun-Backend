@@ -4,30 +4,32 @@ from utils import fields_generate
 
 route = {
     'type': blank_form,
-    'url': '/stage/YunWC2019/comparisions',
+    'url': '/stage/YunWC2019/if',
     'methods': ['GET', 'POST']
 }
 
 data = {
-    'title': 'Comparisons',
+    'title': 'If',
     'author': 'Official',
     'description': [
-        'Who is bigger, and who is smaller?',
-        'Show me the answers of these comparasions!',
-        'Watch out the capital!',
-        '比大小！',
-        '告訴我這些判斷式的結果！',
-        '別忘記字首大小寫喔！'
+        'Here is some decisions need to make.',
+        'Can you let all of these results be Good?',
+        '學會決策！',
+        '填滿空格, 我想看到"Good!"的結果！'
     ],
     'code': [
-        '10 > 3',
-        '13 <= 10 + 3',
-        '16 == 16',
-        '6 != int("6")',
-        'print(_____)',
-        'print(_____)',
-        'print(_____)',
-        'print(_____)'
+        'num = _____',
+        '',
+        'if num > 7:',
+        '    if num % 3 == 0:',
+        '        print("Good!")',
+        '',
+        'text = _____',
+        '',
+        'if text != "Good!":',
+        '    print("Bad!")',
+        'else:',
+        '    print("Good!")',
     ],
     'fields': []
 }
@@ -48,7 +50,7 @@ def answer(stdout, stderr):
         if stderr != []:
             return False
         else:
-            ans = ['True', 'True', 'False', 'False']
+            ans = ['Good!', 'Good!']
             for each in range(0, len(ans)):
                 if stdout[each].decode() != ans[each] + '\n':
                     return False
