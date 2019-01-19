@@ -22,10 +22,14 @@ def concat_code(data, form):
     code = ''
     for each in data['code']:
         while each.count('_____') != 0:
+            field_input = str(form[fields[count]])
+            field_input = field_input.replace('{', '@[@')
+            field_input = field_input.replace('}', '@]@')
+                
             each = each.replace('_____', '{}', 1)
-            each = each.format(form[fields[count]])
+            each = each.format(field_input)
             count += 1
-        code += each + '\n'
+        code += each.replace('@[@', '{').replace('@]@', '}') + '\n'
     return code
 
 
