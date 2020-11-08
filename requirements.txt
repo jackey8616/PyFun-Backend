@@ -1,10 +1,10 @@
 aiofiles==0.4.0
 Click==7.0
 httptools==0.0.11
-multidict==4.4.2
-sanic==0.8.3
-Sanic-Cors==0.9.6
-Sanic-Plugins-Framework==0.6.3.dev20180717
+multidict==5.0.0
+sanic==20.9.1
+Sanic-Cors==0.10.0
+Sanic-Plugins-Framework==0.9.4.post1
 ujson==1.35
-uvloop==0.11.2
-websockets==5.0.1
+uvloop==0.14.0
+websockets==8.1
