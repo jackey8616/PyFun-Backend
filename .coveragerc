@@ -2,4 +2,3 @@
 omit = 
     venv*/
     tests/*
-

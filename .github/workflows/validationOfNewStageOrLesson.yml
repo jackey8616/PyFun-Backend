@@ -13,6 +13,13 @@ jobs:
           python-version: 3.6
           architecture: x64
       - name: Install Dependencies
-        run: pip install -r requirements-dev.txt
+        run: |
+          pip install -r requirements-dev.txt
+          pip install coveralls
       - name: Test
         run: python -m pytest --cov=./ --cov-report term-missing --cov-config=.coveragerc ./tests
+      - name: Push test coverage to Coveralls.io
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          coveralls
