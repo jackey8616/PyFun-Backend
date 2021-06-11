@@ -7,4 +7,4 @@ Sanic-Cors==0.10.0
 Sanic-Plugins-Framework==0.9.4.post1
 ujson==1.35
 uvloop==0.14.0
-websockets==8.1
+websockets==9.1
