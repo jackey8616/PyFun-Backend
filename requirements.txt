@@ -2,7 +2,7 @@ aiofiles==0.4.0
 Click==7.0
 httptools==0.0.11
 multidict==5.0.0
-sanic==20.9.1
+sanic==20.12.6
 Sanic-Cors==0.10.0
 Sanic-Plugins-Framework==0.9.4.post1
 ujson==1.35
