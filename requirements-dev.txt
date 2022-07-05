@@ -9,6 +9,6 @@ pytest-sanic==1.6.2
 sanic==20.9.1
 Sanic-Cors==0.10.0
 Sanic-Plugins-Framework==0.9.4.post1
-ujson==1.35
+ujson==5.4.0
 uvloop==0.14.0
 websockets==8.1
