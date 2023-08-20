@@ -1,8 +1,8 @@
 FROM python:3.6.6-alpine
 
-MAINTAINER sean2525<madness48596@gmail.com>
+LABEL maintainer=clooooode<jackey8616@gmail.com>
 
-EXPOSE 80
+EXPOSE 8090
 
 WORKDIR /app
 
@@ -18,4 +18,4 @@ RUN set -e; \
 	pip install -r requirements.txt; \
 	apk del .build-deps;
 
-CMD ["python3", "app.py", "--port", "80"]
+CMD ["python3", "app.py", "--port", "8090"]

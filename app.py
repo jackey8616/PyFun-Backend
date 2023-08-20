@@ -11,8 +11,10 @@ app = None
 @click.command()
 @click.option('--host', default='0.0.0.0', type=str)
 @click.option('--port', default=8000, type=int)
+@click.option('--ssl-cert', default='./server.pem', type=str)
+@click.option('--ssl-key', default='./server.key', type=str)
 @click.option('--test', default=False, type=bool)
-def run(host, port, test):
+def run(host, ssl_cert, ssl_key, port, test):
     global app
     app = Sanic()
     CORS(app)
@@ -20,7 +22,11 @@ def run(host, port, test):
     app.add_route(index, '/', methods=['GET'])
     stage_add_route(app)
     if not test:
-        app.run(host=host, port=port)
+        ssl = {
+            "cert": ssl_cert,
+            "key": ssl_key,
+        }
+        app.run(host=host, port=port, ssl=ssl)
 
 
 async def favicon(request):
