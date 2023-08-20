@@ -4,7 +4,8 @@ on: [ push ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # ubuntu latest is not contains Python 3.6
+    runs-on: ubuntu20.04
     steps:
       - uses: actions/checkout@v2
       - name: Setup Python3.6
