@@ -1,5 +1,4 @@
 from utils.form import blank_form
-from utils import fields_generate
 
 
 route = {
@@ -37,18 +36,8 @@ data = {
         'a = [0, 1, 2, 3, 6, 7, 8, 4, 5, 9, 10]',
         'print(a[_____:_____][::_____])',
         'print(a[_____:_____:_____])'
-    ],
-    'fields': []
+    ]
 }
-data['fields'] = fields_generate(data)
-
-
-async def sanic_request(request):
-    try:
-        return override(request)
-    except NameError:
-        global data, route
-        return route['type'](data, request, answer)
 
 def answer(stdout, stderr):
     try:

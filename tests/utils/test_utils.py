@@ -13,7 +13,6 @@ def test_concat_code():
     data = {
         'code': ['_____', '_____']
     }
-    data['fields'] = fields_generate(data)
     form = {
         'field_1': '123',
         'field_2': '456'

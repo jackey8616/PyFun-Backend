@@ -17,7 +17,7 @@ def fields_generate(data):
 
 
 def concat_code(data, form):
-    fields = data['fields']
+    fields = fields_generate(data)
     count = 0
     code = ''
     for each in data['code']:
