@@ -21,7 +21,7 @@ def run(host, ssl_cert, ssl_key, port, test):
     app.add_route(favicon, '/favicon.ico', methods=['GET'])
     app.add_route(index, '/', methods=['GET'])
     stage_add_route()
-    app.blueprint(stageBp)
+    # app.blueprint(stageBp)
     if not test:
         ssl = {
             "cert": ssl_cert,
