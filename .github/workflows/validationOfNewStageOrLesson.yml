@@ -1,8 +1,8 @@
 name: Validation of new Stage or Lesson
 
 on:
-  - pull_request
-  - workflow_dispatch
+  workflow_dispatch:
+  push:
 
 jobs:
   build:
