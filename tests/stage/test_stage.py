@@ -32,5 +32,5 @@ async def test_lesson_get(test_cli):
 async def no_stage_lesson_get(test_cli):
     def override(res_data):
         assert res_data['error'] == 'No such stage.'
-    await get(cli_test_cli, ulr='/stage/there.is&No.This-stage',
+    await get(cli=test_cli, url='/stage/there.is&No.This-stage',
               callback=override)
