@@ -1,6 +1,6 @@
 import pytest
 from stage.sandbox_escape.s4_whatsinreadme import route, data
-from tests.utils import *
+from tests.utils import get, post, check_attributes
 
 
 def test_attributes():

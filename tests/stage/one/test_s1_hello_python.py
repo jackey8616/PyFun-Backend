@@ -1,6 +1,6 @@
 import pytest
 from stage.one.s1_hello_python import route, data
-from tests.utils import *
+from tests.utils import get, post, check_attributes
 
 
 def test_attributes():
