@@ -1,11 +1,15 @@
+import pytest
+from sanic_testing.reusable import ReusableClient
+
+import pytest
 from stage.two.s4_comment import route, data
-from tests.utils import *
+from tests.utils import check_attributes, get, post
 
 
 def test_attributes():
     check_attributes(route, data)
 
-
+@pytest.mark.asyncio
 async def test_lesson(test_cli):
     await get(cli=test_cli, url=route['url'])
     req_data = {

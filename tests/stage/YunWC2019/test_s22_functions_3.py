@@ -1,3 +1,4 @@
+import pytest
 from stage.YunWC2019.s22_functions_3 import route, data
 from tests.utils import *
 
@@ -5,7 +6,7 @@ from tests.utils import *
 def test_attributes():
     check_attributes(route, data)
 
-
+@pytest.mark.asyncio
 async def test_lesson(test_cli):
     await get(cli=test_cli, url=route['url'])
     req_data = {

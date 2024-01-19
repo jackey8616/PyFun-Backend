@@ -1,5 +1,6 @@
-import json
-
+from json import loads as json_loads
+from json import dumps as json_dumps
+from sanic_testing.testing import SanicASGITestClient
 
 def check_attributes(route, data):
     assert route['type'] is not None
@@ -12,26 +13,24 @@ def check_attributes(route, data):
     assert data['fields'] is not None
 
 
-async def get(cli, url, callback=None):
-    res = await cli.get(url)
+async def get(cli: SanicASGITestClient, url: str, callback=None):
+    _, res = await cli.get(url)
     assert res.status == 200
 
-    res_data = await res.json()
+    res_data = json_loads(res.body)
 
     if callback:
         callback(res_data)
 
 
-async def post(cli, url, data, callback=None):
+async def post(cli: SanicASGITestClient, url: str, data, callback=None):
     if type(data) is not str:
-        data = json.dumps(data)
-    res = await cli.post(url, data=data)
-    # POST status code
+        data = json_dumps(data)
+    _, res = await cli.post(url, data=data)
     assert res.status == 200, res.status
-    # Function
-    res_data = await res.json()
+    res_data = json_loads(res.body)
     assert res_data['data']['result'] is True, \
-        '\n{0}'.format(json.dumps(res_data, indent=4))
+        '\n{0}'.format(json_dumps(res_data, indent=4))
 
     if callback:
         callback(res_data)
