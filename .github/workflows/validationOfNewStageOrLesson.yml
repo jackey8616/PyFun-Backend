@@ -1,11 +1,13 @@
 name: Validation of new Stage or Lesson
 
-on: [ pull_request ]
+on:
+  - pull_request
+  - workflow_dispatch
 
 jobs:
   build:
     # ubuntu latest is not contains Python 3.6
-    runs-on: ubuntu20.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - name: Setup Python 3.6
