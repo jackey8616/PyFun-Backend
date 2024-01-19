@@ -1,4 +1,4 @@
-from sanic import Sanic, Blueprint
+from sanic import Blueprint
 from sanic.response import json
 
 from utils import get_import_files, import_files

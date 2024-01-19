@@ -1,25 +1,29 @@
-name: Validation of new Stage or Lesson
+name: Test on Push
 
 on:
   workflow_dispatch:
   push:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - name: Setup Python 3.10
         uses: actions/setup-python@v2
         with:
           python-version: '3.10'
           architecture: x64
+
       - name: Install Dependencies
         run: |
           pip install -r requirements-dev.txt
           pip install coveralls
+
       - name: Test
         run: python -m pytest --cov=./ --cov-report term-missing --cov-config=.coveragerc ./tests
+
       - name: Push test coverage to Coveralls.io
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -10,10 +10,10 @@ from stage import add_route as stage_add_route, stageBp
 def app():
     app = Sanic('PyFun-Test')
     TestManager(app)
+    app.blueprint(stageBp)
 
     app.add_route(index, '/', methods=['GET'])
     stage_add_route()
-    # app.blueprint(stageBp)
 
     return app
 
