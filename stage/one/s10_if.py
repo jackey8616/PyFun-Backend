@@ -50,7 +50,7 @@ def answer(stdout, stderr):
             return False
         else:
             ans = "You are old\n"
-            if stdout[0].decode() != ans:
+            if stdout[0] != ans:
                 return False
             return True
     except Exception:

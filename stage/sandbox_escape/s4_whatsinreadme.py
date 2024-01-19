@@ -38,6 +38,6 @@ def answer(stdout, stderr):
         if stderr != []:
             return False
         else:
-            return stdout[0].decode() == "{}\n".format(system("README.md"))
+            return stdout[0] == "{}\n".format(system("README.md"))
     except Exception:
         return False

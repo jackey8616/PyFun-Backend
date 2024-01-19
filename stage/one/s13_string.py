@@ -52,7 +52,7 @@ def answer(stdout, stderr):
             if len(stdout) != len(ans):
                 return False
             for index in range(0, len(ans)):
-                if stdout[index].decode() != ans[index]:
+                if stdout[index] != ans[index]:
                     return False
             return True
     except Exception:

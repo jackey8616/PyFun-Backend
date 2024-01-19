@@ -39,6 +39,6 @@ def answer(stdout, stderr):
         if stderr != []:
             return False
         else:
-            return stdout[0].decode() == 'Ha Ha Ha~\n'
+            return stdout[0] == 'Ha Ha Ha~\n'
     except Exception:
         return False

@@ -55,6 +55,6 @@ def answer(stdout, stderr):
         if stderr != []:
             return False
         else:
-            return stdout[0].decode() == '[4, 8, 7, 6, 3]\n'
+            return stdout[0] == '[4, 8, 7, 6, 3]\n'
     except Exception:
         return False

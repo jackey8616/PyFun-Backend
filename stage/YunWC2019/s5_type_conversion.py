@@ -44,7 +44,7 @@ def answer(stdout, stderr):
         else:
             ans = ["1234", "2019 Happy New Year"]
             for each in range(0, len(ans)):
-                if stdout[each].decode() != ans[each] + '\n':
+                if stdout[each] != ans[each] + '\n':
                     return False
             return True
     except Exception:

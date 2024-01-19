@@ -48,7 +48,7 @@ def answer(stdout, stderr):
             ans = ['[\'a\', \'b\', \'c\', \'e\']', 
                    '[\'a\', \'b\', \'c\', \'d\', \'e\']', '5', '2']
             for each in range(0, len(ans)):
-                if stdout[each].decode() != ans[each] + '\n':
+                if stdout[each] != ans[each] + '\n':
                     return False
             return True
     except Exception:

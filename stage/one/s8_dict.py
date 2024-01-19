@@ -57,7 +57,7 @@ def answer(stdout, stderr):
         else:
             ans1 = {1: 4, 2: 3}
             ans2 = {2: 3, 1: 4}
-            return stdout[0].decode() == str(ans1) + "\n" or \
-                stdout[0].decode() == str(ans2) + "\n"
+            return stdout[0] == str(ans1) + "\n" or \
+                stdout[0] == str(ans2) + "\n"
     except Exception:
         return False

@@ -45,6 +45,6 @@ def answer(stdout, stderr):
         if stderr != []:
             return False
         else:
-            return stdout[0].decode() == "(0, (1, 2, 3, 4, 5))\n"
+            return stdout[0] == "(0, (1, 2, 3, 4, 5))\n"
     except Exception:
         return False

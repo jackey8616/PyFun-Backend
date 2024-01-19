@@ -38,6 +38,6 @@ def answer(stdout, stderr):
         if stderr != []:
             return False
         else:
-            return stdout[0].decode() == "{}\n".format(getcwd())
+            return stdout[0] == "{}\n".format(getcwd())
     except Exception:
         return False

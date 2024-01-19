@@ -62,8 +62,8 @@ async def sanic_request(request):
 def answer(stdout, stderr):
     try:
         if stderr != []:
-            return stderr[-1].decode() == 'SyntaxError: non-default argument follows default argument\n'
+            return stderr[-1] == 'SyntaxError: non-default argument follows default argument\n'
         else:
-            return stdout[0].decode() == 'foo\n'
+            return stdout[0] == 'foo\n'
     except Exception:
         return False
