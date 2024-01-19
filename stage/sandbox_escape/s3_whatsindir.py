@@ -38,6 +38,6 @@ def answer(stdout, stderr):
         if stderr != []:
             return False
         else:
-            return stdout[0].decode() == "{}\n".format(listdir())
+            return stdout[0] == "{}\n".format(listdir())
     except Exception:
         return False

@@ -1,7 +1,8 @@
-from tests.utils import *
+import pytest
+from tests.utils import get
 
-
-async def test_index_get(test_cli):
+@pytest.mark.asyncio
+async def test_index_get(app):
     def override(res_data):
         data = res_data['data']
         assert 'one' in data, data
@@ -12,10 +13,11 @@ async def test_index_get(test_cli):
         url = one['url']
         assert index == 1, index
         assert url == '/stage/one/', url
-    await get(cli=test_cli, url='/stage/', callback=override)
+    
+    await get(cli=app.asgi_client, url='/stage/', callback=override)
 
-
-async def test_lesson_get(test_cli):
+@pytest.mark.asyncio
+async def test_lesson_get(app):
     def override(res_data):
         data = res_data['data']
         assert 'hello_python' in data, data
@@ -26,11 +28,14 @@ async def test_lesson_get(test_cli):
         url = hello_python['url']
         assert index == '1', index
         assert url == '/stage/one/hello_python'
-    await get(cli=test_cli, url='/stage/one', callback=override)
 
+    await get(cli=app.asgi_client, url='/stage/one', callback=override)
 
-async def no_stage_lesson_get(test_cli):
+@pytest.mark.asyncio
+async def no_stage_lesson_get(app):
     def override(res_data):
         assert res_data['error'] == 'No such stage.'
-    await get(cli=test_cli, url='/stage/there.is&No.This-stage',
+
+    await get(cli=app.asgi_client,
+              url='/stage/there.is&No.This-stage',
               callback=override)

@@ -48,7 +48,7 @@ def answer(stdout, stderr):
             return False
         else:
             ans = "[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n"
-            if stdout[0].decode() != ans:
+            if stdout[0] != ans:
                 return False
             return True
     except Exception:

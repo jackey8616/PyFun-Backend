@@ -112,7 +112,7 @@ def data_execute(data):
             should_have_final_newline = True
             value = value[:-1]
 
-        lines = [(line + '\n').encode() for line in value.split('\n')]
+        lines = [(line + '\n') for line in value.split('\n')]
         if not should_have_final_newline:
             lines[-1] = lines[-1][:-1]
         return lines

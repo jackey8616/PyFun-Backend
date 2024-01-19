@@ -50,7 +50,7 @@ def answer(stdout, stderr):
         else:
             ans = ['True', 'True', 'False', 'False']
             for each in range(0, len(ans)):
-                if stdout[each].decode() != ans[each] + '\n':
+                if stdout[each] != ans[each] + '\n':
                     return False
             return True
     except Exception:

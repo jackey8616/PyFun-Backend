@@ -44,7 +44,7 @@ def answer(stdout, stderr):
         if stderr != []:
             return False
         else:
-            return stdout[0].decode() in ["burger 1000\n",
+            return stdout[0] in ["burger 1000\n",
                                           "pizza 2000\n",
                                           "chicken 3000\n",
                                           "drink 4000\n"]

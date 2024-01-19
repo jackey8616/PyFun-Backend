@@ -44,7 +44,7 @@ def answer(stdout, stderr):
         else:
             ans = ['3', '9', '1', '[3, 6, 9, 1, 5]']
             for each in range(0, len(ans)):
-                if stdout[each].decode() != ans[each] + '\n':
+                if stdout[each] != ans[each] + '\n':
                     return False
             return True
     except Exception:

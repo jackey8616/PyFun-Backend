@@ -45,7 +45,7 @@ def answer(stdout, stderr):
                 return False
             ans = ['*****\n', '****\n', '***\n', '**\n', '*\n']
             for each in range(0, 5):
-                if stdout[each].decode() != ans[each]:
+                if stdout[each] != ans[each]:
                     return False
             return True
     except Exception:

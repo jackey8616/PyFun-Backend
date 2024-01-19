@@ -41,7 +41,7 @@ def answer(stdout, stderr):
             return False
         else:
             for each in stdout:
-                if each.decode() != 'True\n':
+                if each != 'True\n':
                     return False
             return True
     except Exception:

@@ -3,10 +3,10 @@ import click
 from sanic import Sanic
 from sanic.response import json
 from sanic_cors import CORS
-from stage import add_route as stage_add_route
+from stage import add_route as stage_add_route, stageBp
 
 
-app = None
+app: Sanic = None
 
 @click.command()
 @click.option('--host', default='0.0.0.0', type=str)
@@ -16,11 +16,12 @@ app = None
 @click.option('--test', default=False, type=bool)
 def run(host, ssl_cert, ssl_key, port, test):
     global app
-    app = Sanic()
+    app = Sanic('PyFun')
     CORS(app)
     app.add_route(favicon, '/favicon.ico', methods=['GET'])
     app.add_route(index, '/', methods=['GET'])
-    stage_add_route(app)
+    stage_add_route()
+    # app.blueprint(stageBp)
     if not test:
         ssl = {
             "cert": ssl_cert,

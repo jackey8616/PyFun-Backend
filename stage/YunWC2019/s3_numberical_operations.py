@@ -43,7 +43,7 @@ def answer(stdout, stderr):
         else:
             ans = ['32', '3', '4']
             for each in range(0, len(ans)):
-                if stdout[each].decode() != ans[each] + '\n':
+                if stdout[each] != ans[each] + '\n':
                     return False
             return True
     except Exception:

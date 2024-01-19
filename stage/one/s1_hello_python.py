@@ -41,6 +41,6 @@ def answer(stdout, stderr):
         if stderr != []:
             return False
         else:
-            return stdout[0].decode() == 'Hello Python\n'
+            return stdout[0] == 'Hello Python\n'
     except Exception:
         return False
