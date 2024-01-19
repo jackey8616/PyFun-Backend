@@ -10,7 +10,6 @@ def check_attributes(route, data):
     assert data['title'] is not None
     assert data['description'] is not None
     assert data['code'] is not None
-    assert data['fields'] is not None
 
 
 async def get(cli: SanicASGITestClient, url: str, callback=None):

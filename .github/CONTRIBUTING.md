@@ -29,13 +29,12 @@ to get an idea of proper file naming convention. It is helpful if each file name
 **For Example:**
 ```
   You have a lesson you want to call i_love_haruna, and you want it to be the 35th lesson in the stage,
-  Then you shoud create a file called s35_i_love_haruna.py with a async function like:
+  Then you should create a file called s35_i_love_haruna.py with a async function like:
 ```
 
 Follow the code structure below to set up your lesson!
 ```python
 from utils.form import blank_form
-from utils import fields_generate
 
 # YOU SHOULD PROPERLY EDIT FEW SECTION:
 # route:       dict for good Sanic route setup and auto import.
@@ -44,7 +43,7 @@ from utils import fields_generate
 #              This must be manually write in order to judge.
 
 route = {
-    'type': blank_form, # Right now only provide *blank_form* one kind of form 181004.
+    'type': blank_form, # Right now only provide *blank_form* one kind of form.
     'url': '/stage/one/hello_python',
     'methods': [ 'GET', 'POST' ]
 }
@@ -58,24 +57,14 @@ data = {
         'Try to say Hello to me!'
     ],
     # code with a array, each blank show with five underline(_),
-    # fronend will automatically translate to <input> tag.
+    # frontend will automatically translate to <input> tag.
     # remember each line should escape with special character.
     'code': [
         '_____(\'_____\')'
-    ],
-    'fields': []
+    ]
 }
-data['fields'] = fields_generate(data)  # NEVER remove this line!!
 
-async def sanic_request(request):
-    try:
-        return override(request)
-    except NameError:
-        global data, route
-        return route['type'](data, request, answer)
-
-# If you don't want to use any type of those.
-# You can write yourself one, just properly handle Sanic request.
+# You can write yourself customize request handler.
 # **IMPORTANT** Unless you are sure to use customize one, or do not comment out this function.
 # def override(request):
 #     pass

@@ -34,6 +34,15 @@ async def stage_index(request, stage_name: str):
         return json({'fail': True, 'error': 'No such stage.'})
 
 
+def construct_sanic_request(override, data, route, answer):
+    async def sanic_request(request):
+        if override:
+            return override(request)
+        else:
+            return route['type'](data, request, answer)
+    
+    return sanic_request
+
 def add_route():
     global imports, module_pys, module_imports
     for (stageKey, module) in imports.items():
@@ -50,7 +59,12 @@ def add_route():
             route = value.route
             routeName = '{}_{}'.format(stageKey, lessonKey)
             stageBp.add_route(
-                handler=getattr(value, 'sanic_request'),
+                handler=construct_sanic_request(
+                    override=getattr(value, 'override') if hasattr(value, 'override') else None,
+                    data=value.data,
+                    route=route,
+                    answer=value.answer,
+                ),
                 name=routeName,
                 uri=route['url'].replace('/stage', '', 1),
                 methods=route['methods'],

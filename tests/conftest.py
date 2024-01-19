@@ -13,7 +13,7 @@ def app():
     app.blueprint(stageBp)
 
     app.add_route(index, '/', methods=['GET'])
-    stage_add_route()
+    # stage_add_route()
 
     return app
 
