@@ -1,4 +1,4 @@
-from base64 import b64encode, b64decode
+from base64 import b64encode
 from json import dumps, loads
 from traceback import format_exc
 
@@ -103,7 +103,7 @@ def lesson_info_handler(event, context):
 def lesson_verify_handler(event, context):
     stage_name = event['pathParameters']['stage_name']
     lesson_name = event['pathParameters']['lesson_name']
-    answer = loads(b64decode(event['body']))['answer']
+    answer = loads(event['body'])['answer']
 
     global module_imports
     stage_manager = StageManager().build_from_static()
