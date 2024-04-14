@@ -2,18 +2,18 @@ import pytest
 
 from sanic import Sanic
 from sanic_testing import TestManager
-from app import index
-from stage import add_route as stage_add_route, stageBp
+
+from controller.index import index
+from controller.stage import stage_blueprint
 
 
 @pytest.fixture(scope='session')
 def app():
     app = Sanic('PyFun-Test')
     TestManager(app)
-    app.blueprint(stageBp)
+    app.blueprint(stage_blueprint)
 
     app.add_route(index, '/', methods=['GET'])
-    # stage_add_route()
 
     return app
 
