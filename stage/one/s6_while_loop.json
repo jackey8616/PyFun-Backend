@@ -1,0 +1,30 @@
+{
+    "type": "blank_form",
+    "url": "/stage/one/while_loop",
+    "title": "While Loop",
+    "author": "rozig",
+    "description": [
+        "Let's print 1 to 10 in descending order.",
+        "Fill the missing fields!"
+    ],
+    "code": [
+        "indicator = 10",
+        "_____ 0 < indicator:",
+        "    print(_____)",
+        "    indicator -= 1"
+    ],
+    "expect": {
+        "stdout": [
+            "10\n",
+            "9\n",
+            "8\n",
+            "7\n",
+            "6\n",
+            "5\n",
+            "4\n",
+            "3\n",
+            "2\n",
+            "1\n"
+        ]
+    }
+}

@@ -1,25 +1,21 @@
-import os
 import click
 from sanic import Sanic
-from sanic.response import json
 from sanic_cors import CORS
-from stage import add_route as stage_add_route, stageBp
 
-
-async def favicon(request):
-    return json({})
-
-
-async def index(request):
-    return json({'success': True, 'data': 'Hello World!'})
-
+from controller.index import favicon, index
+from controller.stage import stage_blueprint, add_route_by_imports, add_route_by_stages
+from manager import StageManager
 
 app = Sanic('PyFun')
-app.blueprint(stageBp)
+stage_manager = StageManager().build_from_static()
+
+add_route_by_imports(stage_blueprint)
+add_route_by_stages(stage_blueprint, stage_manager.get_stages())
+
+app.blueprint(stage_blueprint)
 
 app.add_route(favicon, '/favicon.ico', methods=['GET'])
 app.add_route(index, '/', methods=['GET'])
-stage_add_route()
 
 CORS(app)
 

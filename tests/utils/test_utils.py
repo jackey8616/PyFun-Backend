@@ -26,10 +26,10 @@ def test_get_import_dirs():
 
 def test_list_paths():
     pys = {
-        'hello_python': __import__('stage.one.s1_hello_python', {}, {},
+        'dict': __import__('stage.one.s8_dict', {}, {},
                                    ['__file__', 'route', 'data'])
     }
     out = list_paths(pys=pys)
-    assert out['hello_python']['index'] == '1'
-    assert out['hello_python']['title'] == pys['hello_python'].data['title']
-    assert out['hello_python']['url'] == pys['hello_python'].route['url']
+    assert out['dict']['index'] == '8'
+    assert out['dict']['title'] == pys['dict'].data['title']
+    assert out['dict']['url'] == pys['dict'].route['url']

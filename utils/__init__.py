@@ -40,6 +40,12 @@ def get_import_dirs(path):
     pys = [f for f in ls_files if isdir(join(path, f)) and f != '__pycache__']
     return pys
 
+def get_folder_files(path):
+    path = join(os.getcwd(), path)
+    ls_files = listdir(path)
+    ls_files.sort()
+    return ls_files
+
 
 def get_import_files(path):
     path = join(os.getcwd(), path)
@@ -47,7 +53,7 @@ def get_import_files(path):
     ls_files.sort()
     pys = []
     for f in ls_files:
-        if isfile(join(path, f)) and f != '__init__.py':
+        if isfile(join(path, f)) and f.endswith('.py') and f != '__init__.py':
             pys.append((f[f.index('_') + 1:-3], f))
     return pys
 

@@ -88,8 +88,9 @@ For example, the `s1_hello_python.py` lesson's corresponding test file is `test_
 
 Use the structure below to build your tests:
 ```python
+import pytest
 from stage.[stage name].[lesson name] import route, data
-from tests.utils import check_attributes, post
+from tests.utils import check_attributes, get, post
 
 
 # This test function must declare on the top in order to test first.
@@ -100,6 +101,7 @@ def test_attributes():
 
 # This is the main test function, everything you need just only req_data.
 async def test_lesson(test_cli):
+    await get(cli=test_cli, url=url)
     req_data = {
         ...
         'your_filed_with_id': 'field_answer'

@@ -1,0 +1,26 @@
+{
+    "type": "blank_form",
+    "url": "/stage/one/nested_for_loop",
+    "title": "Nested For Loop",
+    "author": "Official",
+    "image": "https://myanimelist.cdn-dena.com/images/characters/6/276027.jpg",
+    "description": [
+        "This time I want some stars in triangle.",
+        "Please give me a UP-SIDE-DOWN triangle stars with both width and height in 5."
+    ],
+    "code": [
+        "for each in range(0, _____):",
+        "    for every in range(_____, 50):",
+        "        print('*', end='')",
+        "    print('')"
+    ],
+    "expect": {
+        "stdout": [
+            "*****\n",
+            "****\n",
+            "***\n",
+            "**\n",
+            "*\n"
+        ]
+    }
+}
