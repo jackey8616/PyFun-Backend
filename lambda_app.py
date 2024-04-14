@@ -1,3 +1,5 @@
+from base64 import b64decode
+from json import loads
 from traceback import format_exc
 
 from manager import StageManager
@@ -26,8 +28,20 @@ for (stageKey, module) in imports.items():
     )
 
 
+def stages_info_handler(event, context):
+    stages = {}
+    global imports
+    for (key, module) in imports.items():
+        setup = getattr(module, 'setup')
+        stages[key] = {
+            'index': setup['index'],
+            'url': setup['url']
+        }
+    return {'success': True, 'data': stages}
+
+
 def stage_info_handler(event, context):
-    stage_name = event['stage_name']
+    stage_name = event['pathParameters']['stage_name']
 
     stage_manager = StageManager().build_from_static()
     stages = stage_manager.get_stages()
@@ -53,8 +67,8 @@ def stage_info_handler(event, context):
 
 
 def lesson_info_handler(event, context):
-    stage_name = event['stage_name']
-    lesson_name = event['lesson_name']
+    stage_name = event['pathParameters']['stage_name']
+    lesson_name = event['pathParameters']['lesson_name']
 
     global module_imports
     stage_manager = StageManager().build_from_static()
@@ -79,9 +93,9 @@ def lesson_info_handler(event, context):
 
 
 def lesson_verify_handler(event, context):
-    stage_name = event['stage_name']
-    lesson_name = event['lesson_name']
-    answer = event['answer']
+    stage_name = event['pathParameters']['stage_name']
+    lesson_name = event['pathParameters']['lesson_name']
+    answer = loads(b64decode(event['body']['answer']))
 
     global module_imports
     stage_manager = StageManager().build_from_static()
