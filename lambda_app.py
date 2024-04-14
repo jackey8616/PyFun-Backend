@@ -56,7 +56,7 @@ def stage_info_handler(event, context):
     global imports, module_pys
 
     if stage_name not in stages and stage_name not in imports:
-        return {'fail': True, 'error': 'No suck stage'}
+        return wrap_api_gateway_response({'fail': True, 'error': 'No suck stage'})
 
     lessons = {}
     for (lesson_key, lesson) in stages[stage_name].get_lessons().items():
@@ -82,20 +82,20 @@ def lesson_info_handler(event, context):
     stage_manager = StageManager().build_from_static()
     stages = stage_manager.get_stages()
     if (stage_name not in stages and stage_name not in module_imports):
-        return {'fail': True, 'data': 'No such stage'}
+        return wrap_api_gateway_response({'fail': True, 'data': 'No such stage'})
 
 
     if (stage_name in stages):
         lessons = stages[stage_name].get_lessons()
         if (lesson_name in lessons):
             lesson = lessons[lesson_name]
-            return {'success': True, 'data': lesson.get_router_data()}
+            return wrap_api_gateway_response({'success': True, 'data': lesson.get_router_data()})
 
     if (stage_name in module_imports):
         lessons = module_imports[stage_name]
         if (lesson_name in lessons):
             lesson = lessons[lesson_name]
-            return {'success': True, 'data': lesson.data}
+            return wrap_api_gateway_response({'success': True, 'data': lesson.data})
 
     return wrap_api_gateway_response({'fail': True, 'data': 'No such lesson'})
 
@@ -103,13 +103,13 @@ def lesson_info_handler(event, context):
 def lesson_verify_handler(event, context):
     stage_name = event['pathParameters']['stage_name']
     lesson_name = event['pathParameters']['lesson_name']
-    answer = loads(b64decode(event['body']['answer']))
+    answer = loads(b64decode(event['body']))['answer']
 
     global module_imports
     stage_manager = StageManager().build_from_static()
     stages = stage_manager.get_stages()
     if (stage_name not in stages and stage_name not in module_imports):
-        return {'fail': True, 'data': 'No such stage'}
+        return wrap_api_gateway_response({'fail': True, 'data': 'No such stage'})
 
     data, answer_func = None, None
     if (stage_name in stages):
@@ -124,7 +124,7 @@ def lesson_verify_handler(event, context):
             data, answer_func = lesson.data, lesson.answer
         
     if data is None:
-        return {'fail': True, 'data': 'No such lesson'}
+        return wrap_api_gateway_response({'fail': True, 'data': 'No such lesson'})
 
     try:
         code_data = concat_code(data, answer)
