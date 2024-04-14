@@ -1,9 +1,14 @@
 from __future__ import annotations
+from typing import Dict
 
 from sanic import Blueprint
 from sanic.response import json
 
+from stage import Stage
+from stage.lesson import Lesson
+from manager import StageManager
 from utils import get_import_files, get_import_dirs, import_files, import_dirs, list_paths
+from utils.form import blank_form
 
 stage_blueprint = Blueprint('stage', url_prefix='stage')
 
@@ -26,13 +31,28 @@ async def index(request):
 
 @stage_blueprint.route('<stage_name>', methods=['GET'])
 async def stage_index(request, stage_name: str):
-    lessons = {}
+    stage_manager = StageManager().build_from_static()
+    stages = stage_manager.get_stages()
     global imports, module_pys
+
+    if stage_name not in stages and stage_name not in imports:
+        return json({'fail': True, 'error': 'No such stage.'})
+
+    lessons = {}
+    if stage_name in stages:
+        for (lesson_key, lesson) in stages[stage_name].get_lessons().items():
+            index = lesson_key[1:lesson_key.index('_')]
+            lessons[lesson_key.removeprefix('s{}_'.format(index))] = {
+                'index': index, # should be int, wait for refactor
+                'title': lesson.title,
+                'url': lesson.setup.url,
+            }
+
     if stage_name in imports:
-        lessons = list_paths(module_imports[stage_name])
-        return json({'success': True, 'data': lessons})
-    else:
-        return json({'fail': True, 'error': 'No suck stage.'})
+        for (lesson_key, lesson_meta) in list_paths(module_imports[stage_name]).items():
+            lessons[lesson_key] = lesson_meta
+
+    return json({'success': True, 'data': lessons})
 
 
 def construct_sanic_request(override, data, route, answer):
@@ -41,6 +61,12 @@ def construct_sanic_request(override, data, route, answer):
             return override(request)
         else:
             return route['type'](data, request, answer)
+    
+    return sanic_request
+
+def construct_sanic_request_kai(lesson: Lesson):
+    async def sanic_request(request):
+        return blank_form(lesson.get_router_data(), request, lesson.answer.verify_answer)
     
     return sanic_request
 
@@ -69,4 +95,14 @@ def add_route_by_imports(blueprint):
                 name=routeName,
                 uri=route['url'].replace('/stage', '', 1),
                 methods=route['methods'],
+            )
+
+def add_route_by_stages(blueprint, stages: Dict[str, Stage]):
+    for (stage_name, stage) in stages.items():
+        for (lesson_name, lesson) in stage.get_lessons().items():
+            blueprint.add_route(
+                handler=construct_sanic_request_kai(lesson),
+                name='{}/{}'.format(stage_name, lesson_name),
+                uri=lesson.setup.url.replace('/stage', '', 1),
+                methods=['GET', 'POST'],
             )

@@ -5,6 +5,13 @@ from sanic_testing import TestManager
 
 from controller.index import index
 from controller.stage import stage_blueprint
+from manager import StageManager
+
+
+@pytest.fixture(scope='session')
+def stage_manager():
+    stage_manager = StageManager().build_from_static()
+    return stage_manager
 
 
 @pytest.fixture(scope='session')

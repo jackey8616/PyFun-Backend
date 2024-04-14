@@ -3,11 +3,14 @@ from sanic import Sanic
 from sanic_cors import CORS
 
 from controller.index import favicon, index
-from controller.stage import stage_blueprint, add_route_by_imports
+from controller.stage import stage_blueprint, add_route_by_imports, add_route_by_stages
+from manager import StageManager
 
 app = Sanic('PyFun')
+stage_manager = StageManager().build_from_static()
 
 add_route_by_imports(stage_blueprint)
+add_route_by_stages(stage_blueprint, stage_manager.get_stages())
 
 app.blueprint(stage_blueprint)
 
