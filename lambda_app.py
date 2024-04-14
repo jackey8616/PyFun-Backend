@@ -1,5 +1,5 @@
-from base64 import b64decode
-from json import loads
+from base64 import b64encode, b64decode
+from json import dumps, loads
 from traceback import format_exc
 
 from manager import StageManager
@@ -28,6 +28,14 @@ for (stageKey, module) in imports.items():
     )
 
 
+def wrap_api_gateway_response(data):
+    return {
+        'isBase64Encoded': True,
+        'statusCode': 200,
+        'headers': {},
+        'body': b64encode(dumps(data).encode('utf-8')),
+    }
+
 def stages_info_handler(event, context):
     stages = {}
     global imports
@@ -37,7 +45,7 @@ def stages_info_handler(event, context):
             'index': setup['index'],
             'url': setup['url']
         }
-    return {'success': True, 'data': stages}
+    return wrap_api_gateway_response({'success': True, 'data': stages})
 
 
 def stage_info_handler(event, context):
@@ -63,7 +71,7 @@ def stage_info_handler(event, context):
         for (lesson_key, lesson_meta) in list_paths(module_imports[stage_name]).items():
             lessons[lesson_key] = lesson_meta
 
-    return {'success': True, 'data': lessons}
+    return wrap_api_gateway_response({'success': True, 'data': lessons})
 
 
 def lesson_info_handler(event, context):
@@ -89,7 +97,7 @@ def lesson_info_handler(event, context):
             lesson = lessons[lesson_name]
             return {'success': True, 'data': lesson.data}
 
-    return {'fail': True, 'data': 'No such lesson'}
+    return wrap_api_gateway_response({'fail': True, 'data': 'No such lesson'})
 
 
 def lesson_verify_handler(event, context):
@@ -122,14 +130,14 @@ def lesson_verify_handler(event, context):
         code_data = concat_code(data, answer)
         stdout, stderr = data_execute(code_data)
         result = answer_func(stdout=stdout, stderr=stderr)
-        return {
+        return wrap_api_gateway_response({
             'success': True,
             'data': {
                 'result': result,
                 'stdout': stdout,
                 'stderr': stderr,
             }
-        }
+        })
     except Exception:
-        return {'fail': True, 'error': format_exc()}
+        return wrap_api_gateway_response({'fail': True, 'error': format_exc()})
 
