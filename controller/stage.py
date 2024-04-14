@@ -60,13 +60,13 @@ def construct_sanic_request(override, data, route, answer):
         if override:
             return override(request)
         else:
-            return route['type'](data, request, answer)
+            return json(route['type'](data, request, answer))
     
     return sanic_request
 
 def construct_sanic_request_kai(lesson: Lesson):
     async def sanic_request(request):
-        return blank_form(lesson.get_router_data(), request, lesson.answer.verify_answer)
+        return json(blank_form(lesson.get_router_data(), request, lesson.answer.verify_answer))
     
     return sanic_request
 
