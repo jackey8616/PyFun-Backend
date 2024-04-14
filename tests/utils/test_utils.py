@@ -26,10 +26,10 @@ def test_get_import_dirs():
 
 def test_list_paths():
     pys = {
-        'basic_type': __import__('stage.one.s2_basic_type', {}, {},
+        'if_elif_else': __import__('stage.one.s3_if_elif_else', {}, {},
                                    ['__file__', 'route', 'data'])
     }
     out = list_paths(pys=pys)
-    assert out['basic_type']['index'] == '2'
-    assert out['basic_type']['title'] == pys['basic_type'].data['title']
-    assert out['basic_type']['url'] == pys['basic_type'].route['url']
+    assert out['if_elif_else']['index'] == '3'
+    assert out['if_elif_else']['title'] == pys['if_elif_else'].data['title']
+    assert out['if_elif_else']['url'] == pys['if_elif_else'].route['url']
