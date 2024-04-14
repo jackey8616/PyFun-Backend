@@ -26,10 +26,10 @@ def test_get_import_dirs():
 
 def test_list_paths():
     pys = {
-        'nested_for_loop': __import__('stage.one.s5_nested_for_loop', {}, {},
+        'while_loop': __import__('stage.one.s6_while_loop', {}, {},
                                    ['__file__', 'route', 'data'])
     }
     out = list_paths(pys=pys)
-    assert out['nested_for_loop']['index'] == '5'
-    assert out['nested_for_loop']['title'] == pys['nested_for_loop'].data['title']
-    assert out['nested_for_loop']['url'] == pys['nested_for_loop'].route['url']
+    assert out['while_loop']['index'] == '6'
+    assert out['while_loop']['title'] == pys['while_loop'].data['title']
+    assert out['while_loop']['url'] == pys['while_loop'].route['url']
