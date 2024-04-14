@@ -1,0 +1,31 @@
+{
+    "type": "blank_form",
+    "url": "/stage/one/for_loop",
+    "title": "For Loop",
+    "author": "Official",
+    "image": "https://myanimelist.cdn-dena.com/images/characters/6/276027.jpg",
+    "description": [
+        "I like A.P. (Arithmetic Progression)",
+        "Can you give me a A.P. with five numbers,",
+        "And each difference is 2."
+    ],
+    "code": [
+        "for each in range(_____, _____, _____):",
+        "    print(each)"
+    ],
+    "expect": {
+        "type": "runtime-validator",
+        "source": [
+            "def validate(input_stdout, input_stderr):",
+            "    if input_stderr != []:",
+            "        return False",
+            "    ",
+            "    if len(input_stdout) != 5:",
+            "        return False",
+            "    for each in range(1, len(input_stdout) - 1):",
+            "        if int(input_stdout[each]) - int(input_stdout[each - 1]) != 2:",
+            "            return False",
+            "    return True"
+        ]
+    }
+}
