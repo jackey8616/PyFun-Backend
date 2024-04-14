@@ -1,0 +1,18 @@
+{
+    "type": "blank_form",
+    "url": "/stage/one/hello_python",
+    "title": "Hello Python",
+    "author": "Official",
+    "image": "https://community-cdn-digitalocean-com.global.ssl.fastly.net/assets/tutorials/images/large/EBOOK_PYTHON_no-name.png?1516826609",
+    "description": [
+        "Hello there!",
+        "I see that you are a new face!",
+        "Try to say Hello to me!"
+    ],
+    "code": [
+        "_____(\"_____\")"
+    ],
+    "expect": {
+        "stdout": ["Hello Python\n"]
+    }
+}

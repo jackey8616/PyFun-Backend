@@ -26,10 +26,10 @@ def test_get_import_dirs():
 
 def test_list_paths():
     pys = {
-        'hello_python': __import__('stage.one.s1_hello_python', {}, {},
+        'basic_type': __import__('stage.one.s2_basic_type', {}, {},
                                    ['__file__', 'route', 'data'])
     }
     out = list_paths(pys=pys)
-    assert out['hello_python']['index'] == '1'
-    assert out['hello_python']['title'] == pys['hello_python'].data['title']
-    assert out['hello_python']['url'] == pys['hello_python'].route['url']
+    assert out['basic_type']['index'] == '2'
+    assert out['basic_type']['title'] == pys['basic_type'].data['title']
+    assert out['basic_type']['url'] == pys['basic_type'].route['url']
