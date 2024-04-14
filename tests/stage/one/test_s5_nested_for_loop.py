@@ -1,5 +1,5 @@
 import pytest
-from tests.utils import get, post, check_attributes
+from tests.utils import get, post
 
 
 @pytest.mark.asyncio
