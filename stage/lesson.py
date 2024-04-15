@@ -3,10 +3,12 @@ from typing import List, Dict
 
 from stage.lesson_setup import LessonSetup
 from stage.lesson_answer import LessonAnswer
+from utils import fields_generate
 
 class Lesson:
     def __init__(
         self,
+        index: str,  # should be int, wait for refactor
         setup: LessonSetup,
         title: str,
         author: str,
@@ -14,6 +16,7 @@ class Lesson:
         code: List[str],
         answer: LessonAnswer,
     ):
+        self.index = index
         self.setup = setup
         self.title = title
         self.author = author
@@ -27,6 +30,7 @@ class Lesson:
             'author': self.author,
             'description': self.description,
             'code': self.code,
+            'fields': fields_generate({'code': self.code}),
         }
     
     def verify_answer(self, stdout, stderr) -> bool:
@@ -43,8 +47,9 @@ class Lesson:
         return True
 
     @staticmethod
-    def deserialize(setup: LessonSetup, answer: LessonAnswer, data: List[str]) -> Lesson:
+    def deserialize(index: str, setup: LessonSetup, answer: LessonAnswer, data: List[str]) -> Lesson:
         return Lesson(
+            index=index,
             setup=setup,
             answer=answer,
             title=data['title'],

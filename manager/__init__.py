@@ -34,11 +34,13 @@ class StageManager:
                 if (lesson_file_name.endswith('.json') is False):
                     continue
                 
-                lesson_name = lesson_file_name.removesuffix('.json')
+                index = lesson_file_name[1:lesson_file_name.index('_')]
+                lesson_name = lesson_file_name.removeprefix('s{}_'.format(index)).removesuffix('.json')
                 lesson_file_path = join(stage_file_path, lesson_file_name)
                 with open(lesson_file_path, 'r') as lesson_file:
                     lesson_raw_data = load(lesson_file)
                     lesson = Lesson.deserialize(
+                        index,
                         LessonSetup.deserialize(lesson_file_path, lesson_raw_data),
                         LessonAnswer.deserialize(lesson_raw_data),
                         lesson_raw_data,

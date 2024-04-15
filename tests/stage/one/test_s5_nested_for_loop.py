@@ -4,7 +4,7 @@ from tests.utils import get, post
 
 @pytest.mark.asyncio
 async def test_lesson(stage_manager, test_cli):
-    lesson = stage_manager.get_stages()['one'].get_lessons()['s5_nested_for_loop']
+    lesson = stage_manager.get_stages()['one'].get_lessons()['nested_for_loop']
     url = lesson.setup.url
 
     await get(cli=test_cli, url=url)

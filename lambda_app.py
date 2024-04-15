@@ -4,6 +4,7 @@ from traceback import format_exc
 
 from manager import StageManager
 from utils import (
+    fields_generate,
     concat_code,
     data_execute,
     get_import_files,
@@ -40,6 +41,7 @@ def wrap_api_gateway_response(data):
         'body': b64encode(dumps(data).encode('utf-8')),
     }
 
+
 def stages_info_handler(event, context):
     stages = {}
     global imports
@@ -64,9 +66,8 @@ def stage_info_handler(event, context):
 
     lessons = {}
     for (lesson_key, lesson) in stages[stage_name].get_lessons().items():
-        index = lesson_key[1:lesson_key.index('_')]
-        lessons[lesson_key.removeprefix('s{}_'.format(index))] = {
-            'index': index, # should be int, wait for refactor
+        lessons[lesson_key] = {
+            'index': lesson.index,
             'title': lesson.title,
             'url': lesson.setup.url,
         }
@@ -99,6 +100,7 @@ def lesson_info_handler(event, context):
         lessons = module_imports[stage_name]
         if (lesson_name in lessons):
             lesson = lessons[lesson_name]
+            lesson.data['fields'] = fields_generate(lesson.data)
             return wrap_api_gateway_response({'success': True, 'data': lesson.data})
 
     return wrap_api_gateway_response({'fail': True, 'data': 'No such lesson'})

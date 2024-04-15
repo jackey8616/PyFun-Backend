@@ -4,7 +4,7 @@ from tests.utils import get, post
 
 @pytest.mark.asyncio
 async def test_lesson(stage_manager, test_cli):
-    lesson = stage_manager.get_stages()['one'].get_lessons()['s2_basic_type']
+    lesson = stage_manager.get_stages()['one'].get_lessons()['basic_type']
     url = lesson.setup.url
 
     await get(cli=test_cli, url=url)

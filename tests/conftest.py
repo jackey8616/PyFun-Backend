@@ -4,7 +4,7 @@ from sanic import Sanic
 from sanic_testing import TestManager
 
 from controller.index import index
-from controller.stage import stage_blueprint
+from controller.stage import stage_blueprint, add_route_by_stages, add_route_by_imports
 from manager import StageManager
 
 
@@ -15,12 +15,14 @@ def stage_manager():
 
 
 @pytest.fixture(scope='session')
-def app():
+def app(stage_manager):
     app = Sanic('PyFun-Test')
     TestManager(app)
     app.blueprint(stage_blueprint)
 
     app.add_route(index, '/', methods=['GET'])
+    add_route_by_stages(stage_blueprint, stage_manager.get_stages())
+    add_route_by_imports(stage_blueprint)
 
     return app
 

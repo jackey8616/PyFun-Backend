@@ -7,7 +7,14 @@ from sanic.response import json
 from stage import Stage
 from stage.lesson import Lesson
 from manager import StageManager
-from utils import get_import_files, get_import_dirs, import_files, import_dirs, list_paths
+from utils import (
+    fields_generate,
+    get_import_files,
+    get_import_dirs,
+    import_files,
+    import_dirs,
+    list_paths,
+)
 from utils.form import blank_form
 
 stage_blueprint = Blueprint('stage', url_prefix='stage')
@@ -16,6 +23,7 @@ pys = get_import_dirs('stage')
 imports = import_dirs(pys, globals(), locals(), 'stage')
 module_imports = {}
 module_pys = {}
+
 
 @stage_blueprint.route('', methods=['GET'])
 async def index(request):
@@ -33,7 +41,7 @@ async def index(request):
 async def stage_index(request, stage_name: str):
     stage_manager = StageManager().build_from_static()
     stages = stage_manager.get_stages()
-    global imports, module_pys
+    global imports, module_imports
 
     if stage_name not in stages and stage_name not in imports:
         return json({'fail': True, 'error': 'No such stage.'})
@@ -41,9 +49,8 @@ async def stage_index(request, stage_name: str):
     lessons = {}
     if stage_name in stages:
         for (lesson_key, lesson) in stages[stage_name].get_lessons().items():
-            index = lesson_key[1:lesson_key.index('_')]
-            lessons[lesson_key.removeprefix('s{}_'.format(index))] = {
-                'index': index, # should be int, wait for refactor
+            lessons[lesson_key] = {
+                'index': lesson.index,
                 'title': lesson.title,
                 'url': lesson.setup.url,
             }
@@ -60,6 +67,7 @@ def construct_sanic_request(override, data, route, answer):
         if override:
             return override(request)
         else:
+            data['fields'] = fields_generate(data)
             return json(route['type'](data, request, answer))
     
     return sanic_request
@@ -71,7 +79,7 @@ def construct_sanic_request_kai(lesson: Lesson):
     return sanic_request
 
 def add_route_by_imports(blueprint):
-    global imports, module_pys, module_imports
+    global imports, module_imports
     for (stageKey, module) in imports.items():
         setup = getattr(module, 'setup')
         module_pys[stageKey] = get_import_files(setup['path'])
